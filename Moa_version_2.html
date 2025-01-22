@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Based Animation</title>
+  <style>
+    /* Изолированные стили с уникальными префиксами */
+    body {
+      margin: 0;
+      height: 4000px; /* Высота страницы для прокрутки */
+      overflow-x: hidden;
+      background-color: #f0f0f0;
+    }
+
+    .scroll-animation-section {
+      position: relative;
+    }
+
+    /* Контейнер блока с анимацией */
+    .scroll-animation-block {
+      position: relative;
+      height: 1000px;
+      background-color: #fff;
+    }
+
+    /* Мембрана */
+    .scroll-membrane {
+      width: 400px;
+      height: 150px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/membrane_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0; /* Мембрана скрыта по умолчанию */
+      transition: opacity 1s ease-out, top 1s ease-out;
+    }
+    .scroll-membrane::after {
+      content: 'Membrane cell';
+      position: absolute;
+      font-size: 16px;
+      color: #333;
+      background-color: #f9f9f9;
+      padding: 8px 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Молекула */
+    .scroll-molecule {
+      width: 150px;
+      height: 150px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/mu_agonist_main.svg') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: top 1s ease-out, opacity 1s ease-out;
+    }
+    .scroll-molecule::after {
+      content: 'Arvidal®';
+      position: absolute;
+      font-size: 16px;
+      color: #333;
+      background-color: #f9f9f9;
+      padding: 8px 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Легкие */
+    .scroll-lungs {
+      width: 400px;
+      height: 400px;
+      position: absolute;
+      top: 0%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 1s ease-out, top 1s ease-out, left 1s ease-out;
+      position: relative;
+    }
+    .scroll-lungs::after {
+      content: 'Pro- inflammatory cytokines';
+      position: absolute;
+      font-size: 16px;
+      color: #333;
+      background-color: #f9f9f9;
+      padding: 8px 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .scroll-lungs img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      animation: lungsImageChange 6s ease-in-out infinite;
+    }
+    .scroll-lungs img:first-child {
+      opacity: 1;
+      animation-delay: 3s;
+    }
+    .scroll-lungs img:last-child {
+      opacity: 1;
+      animation-delay: 1s;
+    }
+
+    /* Интерфероны */
+    .scroll-interferons {
+      width: 400px;
+      height: 300px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/interferons.svg') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      top: 0%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 1s ease-out, top 1s ease-out, left 1s ease-out;
+    }
+
+    /* Карточка с описанием для легких */
+    .scroll-lungs-description {
+      position: absolute;
+      bottom: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 350px;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: opacity 1s ease-out;
+    }
+
+    /* Карточка с описанием для интерферонов */
+    .scroll-interferons-description {
+      position: absolute;
+      bottom: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 350px;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: opacity 1s ease-out;
+    }
+
+    /* Анимация чередования картинок легких */
+    @keyframes lungsImageChange {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="scroll-animation-section">
+    <div class="scroll-animation-block">
+      <div class="scroll-membrane"></div>
+      <div class="scroll-molecule"></div>
+
+      <!-- Блок с легкими и их изображениями, а также карточкой с описанием -->
+      <div class="scroll-lungs">
+        <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_treat_main.png" alt="lungs with cytokines">
+        <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_clean_main.png" alt="lungs without cytokines">
+        <div class="scroll-lungs-description">
+          Suppresses the hypersecretion of pro-inflammatory cytokines (such as IL-1, IL-6, and TNF-α), thereby reducing intoxication and controlling hyperinflammation with signs of cytokine storm and associated acute respiratory distress syndrome (ARDS).
+          <br><br>
+          Prevents lung damage, averting pneumonia.
+        </div>
+      </div>
+
+      <!-- Блок с интерферонами, а также карточкой с описанием -->
+      <div class="scroll-interferons">
+        <div class="scroll-interferons-description">
+          Stimulates the production of endogenous interferons at the early stages of infection.
+          <br><br>
+          Regulation of the phagocytic component activity of innate immunity (macrophages and neutrophils), along with the activity of lymphocytes – natural killers.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const animBlock = document.querySelector('.scroll-animation-block');
+      const molecule = document.querySelector('.scroll-molecule');
+      const membrane = document.querySelector('.scroll-membrane');
+      const lungs = document.querySelector('.scroll-lungs');
+      const interferons = document.querySelector('.scroll-interferons');
+      const lungsDescription = document.querySelector('.scroll-lungs-description');
+      const interferonsDescription = document.querySelector('.scroll-interferons-description');
+      
+      let isInView = false;
+
+      const options = {
+        root: null, // viewport
+        rootMargin: "0px",
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            isInView = true;
+            startAnimation();
+          } else {
+            isInView = false;
+            resetAnimation();
+          }
+        });
+      }, options);
+
+      observer.observe(animBlock);
+
+      function startAnimation() {
+        window.addEventListener('scroll', moveElements);
+        molecule.style.opacity = '1';
+      }
+
+      function resetAnimation() {
+        window.removeEventListener('scroll', moveElements);
+        molecule.style.top = '60px';
+        molecule.style.opacity = '0';
+        membrane.style.opacity = '0';
+        lungs.style.opacity = '0';
+        interferons.style.opacity = '0';
+        lungsDescription.style.opacity = '0';
+        interferonsDescription.style.opacity = '0';
+        lungs.style.top = '100%';
+        lungs.style.left = '50%';
+        interferons.style.top = '100%';
+        interferons.style.left = '50%';
+      }
+
+      function moveElements() {
+        if (!isInView) return;
+
+        let scrollPosition = window.scrollY;
+        let blockTop = animBlock.offsetTop;
+        let blockHeight = animBlock.offsetHeight;
+
+        let scrollInsideBlock = scrollPosition - blockTop;
+
+        if (scrollInsideBlock >= 0 && scrollInsideBlock <= blockHeight) {
+          let percentage = scrollInsideBlock / blockHeight;
+          let newMoleculeTop = 60 + (percentage * (blockHeight - 60));
+          molecule.style.top = `${newMoleculeTop}px`;
+
+          if (newMoleculeTop >= 60) {
+            membrane.style.opacity = '1';
+          }
+
+          if (newMoleculeTop >= membrane.offsetTop - 100 && newMoleculeTop <= membrane.offsetTop + membrane.offsetHeight + 100) {
+            lungs.style.opacity = '1';
+            lungs.style.top = '40%';
+            lungs.style.left = '20%';
+            lungsDescription.style.opacity = '1';
+            interferons.style.opacity = '1';
+            interferons.style.top = '40%';
+            interferons.style.left = '80%';
+            interferonsDescription.style.opacity = '1';
+          } else {
+            lungs.style.opacity = '0';
+            interferons.style.opacity = '0';
+            lungsDescription.style.opacity = '0';
+            interferonsDescription.style.opacity = '0';
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

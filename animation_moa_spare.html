@@ -1,0 +1,2871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation: Molecule and Receptor</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Блок, в котором происходят анимации */
+    #animation-container {
+      position: relative;
+      width: 100%;
+      max-width: 2560px;
+      height: 1000px; /* Увеличенная высота */
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Молекула */
+    .molecule {
+      width: 150px;
+      height: 150px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/mu_agonist_main.svg') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      top: -200px; /* Начинаем выше */
+      z-index: 2;
+      animation: moveMolecule 6s ease-in-out forwards; /* Увеличена длительность */
+    }
+
+    /* Рецептор */
+    .receptor {
+      width: 300px;
+      height: 300px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/receptor_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      z-index: 1;
+      animation: receptorInitial 6s ease-in-out 1s forwards, receptorMoveDown 4s ease-in-out 9s forwards;
+    }
+
+    /* Мембрана */
+       .membrane {
+      width: 350px;
+      height: 380px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/membrane_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      bottom: -100px;
+      z-index: 0;
+      opacity: 0;
+      animation: 
+        membraneAnimation 3s ease-in-out 6s forwards, 
+        membraneColorChange 2.5s ease-in-out 12s forwards,
+        membraneMoveUp 2s ease-in-out 13s forwards,
+        membraneBounce 1.5s ease-in-out 15s infinite; /* Начало прыжков сразу после подъема */
+    }
+
+
+    /* Анимация молекулы (входит в центр рецептора и исчезает) */
+    @keyframes moveMolecule {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(350px); /* Молекула входит в центр рецептора */
+        opacity: 1;
+      }
+      75% {
+        transform: translateY(300px); /* Молекула внутри рецептора */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(750px); /* Молекула движется ещё ниже */
+        opacity: 0; /* Молекула исчезает позже */
+      }
+    }
+
+    /* Начальная анимация рецептора */
+    @keyframes receptorInitial {
+      0% {
+        transform: translateY(0);
+        filter: none;
+      }
+      70% {
+        transform: translateY(100px); /* Рецептор слегка смещается вниз */
+        filter: none; /* Цвет остаётся изначальным */
+      }
+      85% {
+        transform: translateY(150px); /* Держится на месте */
+        filter: hue-rotate(90deg); /* Изменение цвета спустя 4 секунды */
+      }
+      100% {
+        transform: translateY(-250px); /* Рецептор поднимается выше */
+        filter: hue-rotate(90deg); /* Цвет остаётся изменённым */
+      }
+    }
+
+    /* Анимация движения вниз и исчезновения рецептора */
+    @keyframes receptorMoveDown {
+      0% {
+        transform: translateY(-250px);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-200px); /* Центр мембраны, поднят на 350px */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0); /* Под мембраной, поднят на 350px */
+        opacity: 0; /* Исчезает */
+      }
+    }
+
+    /* Анимация мембраны (появление снизу и движение вверх) */
+    @keyframes membraneAnimation {
+      0% {
+        transform: translateY(20px); /* Начинаем с небольшой смещённости вниз */
+        opacity: 0; /* Мембрана скрыта в начале */
+      }
+      50% {
+        transform: translateY(0); /* Мембрана поднимается вверх */
+        opacity: 1; /* Мембрана становится видимой */
+      }
+      100% {
+        transform: translateY(-330px); /* Мембрана поднимется вверх */
+        opacity: 1; /* Мембрана остаётся видимой */
+      }
+    }
+
+    /* Анимация изменения цвета мембраны */
+    @keyframes membraneColorChange {
+      0% {
+        filter: none;
+      }
+      100% {
+        filter: hue-rotate(180deg); /* Изменение цвета мембраны */
+      }
+    }
+
+    /* Анимация плавного подъёма мембраны вверх */
+    @keyframes membraneMoveUp {
+      0% {
+        transform: translateY(-330px);
+      }
+      100% {
+        transform: translateY(-640px); /* Поднимется до верхней границы блока */
+        margin-top: 20px; /* Отступ сверху */
+      }
+    }
+
+    /* Медленные и мягкие припрыжки мембраны */
+    @keyframes membraneBounce {
+      0% {
+        transform: translateY(-640px); /* Начинаем в верхней позиции */
+      }
+      50% {
+        transform: translateY(-647px); /* Легкий, быстрый прыжок */
+      }
+      100% {
+        transform: translateY(-640px); /* Возвращение на место */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="animation-container">
+    <div class="molecule"></div>
+    <div class="receptor"></div>
+    <div class="membrane"></div>
+  </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation: Molecule and Receptor</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Блок, в котором происходят анимации */
+    #animation-container {
+      position: relative;
+      width: 100%;
+      max-width: 2560px;
+      height: 1000px; /* Увеличенная высота */
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Молекула */
+    .molecule {
+      width: 200px;
+      height: 200px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/mu_agonist_main.svg') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      top: -200px; /* Начинаем выше */
+      z-index: 2;
+      animation: moveMolecule 6s ease-in-out forwards; /* Увеличена длительность */
+    }
+
+    /* Рецептор */
+    .receptor {
+      width: 300px;
+      height: 300px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/receptor_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      z-index: 1;
+      animation: receptorInitial 6s ease-in-out 1s forwards, receptorMoveDown 4s ease-in-out 9s forwards;
+      margin-right: 20px;
+    }
+
+    /* Мембрана */
+    .membrane {
+      width: 300px;
+      height: 330px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/membrane_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      bottom: -100px;
+      z-index: 0;
+      opacity: 0;
+      animation: 
+        membraneAnimation 3s ease-in-out 6s forwards, 
+        membraneColorChange 2.5s ease-in-out 12s forwards,
+        membraneMoveUp 2s ease-in-out 13s forwards,
+        membraneBounce 1.5s ease-in-out 15s infinite; /* Начало прыжков сразу после подъема */
+    }
+
+    /* Легкие (один блок с двумя наложенными изображениями) */
+    .lungs-block {
+      position: absolute;
+      bottom: 650px; /* Поднято на 250 пикселей выше */
+      left: 0%;
+      width: 500px;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      opacity: 0;
+      animation: lungsBlockAnimation 3s ease-in-out 15s forwards;
+      z-index: 2; /* Убедитесь, что блок с легкими находится поверх описания */
+    }
+
+    .lungs-block img {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      opacity: 0; /* Оба изображения по умолчанию невидимы */
+      animation: lungsImageChange 6s ease-in-out infinite; /* Анимация чередования */
+    }
+
+    .lungs-block img:first-child {
+      opacity: 1;
+      animation-delay: 0s; /* Первое изображение появляется первым */
+    }
+
+    .lungs-block img:last-child {
+      opacity: 0;
+      animation-delay: 3s; /* Второе изображение появляется позже */
+    }
+
+    /* Анимация чередования картинок легких */
+    @keyframes lungsImageChange {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0; /* Снижение яркости, как исчезновение цитокинов */
+      }
+    }
+
+    /* Интерфероны */
+    .interferon-block {
+      position: absolute;
+      bottom: 150px; /* Поднято на 250 пикселей выше */
+      right: 0%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: interferonBlockAnimation 3s ease-in-out 15s forwards;
+    }
+
+    .interferon-block img {
+      width: 500px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .interferon-text {
+      font-size: 16px;
+      color: #333;
+      text-align: center;
+      opacity: 0;
+      animation: interferonTextAnimation 3s ease-in-out 18s forwards;
+      max-width: 350px;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+      line-height: 1.5;
+    }
+
+    /* Анимация молекулы (входит в центр рецептора и исчезает) */
+    @keyframes moveMolecule {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(350px); /* Молекула входит в центр рецептора */
+        opacity: 1;
+      }
+      75% {
+        transform: translateY(300px); /* Молекула внутри рецептора */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(750px); /* Молекула движется ещё ниже */
+        opacity: 0; /* Молекула исчезает позже */
+      }
+    }
+
+    /* Начальная анимация рецептора */
+    @keyframes receptorInitial {
+      0% {
+        transform: translateY(0);
+        filter: none;
+      }
+      70% {
+        transform: translateY(100px); /* Рецептор слегка смещается вниз */
+        filter: none; /* Цвет остаётся изначальным */
+      }
+      85% {
+        transform: translateY(150px); /* Держится на месте */
+        filter: hue-rotate(90deg); /* Изменение цвета спустя 4 секунды */
+      }
+      100% {
+        transform: translateY(-250px); /* Рецептор поднимается выше */
+        filter: hue-rotate(90deg); /* Цвет остаётся изменённым */
+      }
+    }
+
+    /* Анимация движения вниз и исчезновения рецептора */
+    @keyframes receptorMoveDown {
+      0% {
+        transform: translateY(-250px);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-200px); /* Центр мембраны, поднят на 350px */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0); /* Под мембраной, поднят на 350px */
+        opacity: 0; /* Исчезает */
+      }
+    }
+
+    /* Анимация мембраны (появление снизу и движение вверх) */
+    @keyframes membraneAnimation {
+      0% {
+        transform: translateY(20px); /* Начинаем с небольшой смещённости вниз */
+        opacity: 0; /* Мембрана скрыта в начале */
+      }
+      50% {
+        transform: translateY(0); /* Мембрана поднимается вверх */
+        opacity: 1; /* Мембрана становится видимой */
+      }
+      100% {
+        transform: translateY(-330px); /* Мембрана поднимется вверх */
+        opacity: 1; /* Мембрана остаётся видимой */
+      }
+    }
+
+    /* Анимация изменения цвета мембраны */
+    @keyframes membraneColorChange {
+      0% {
+        filter: none;
+      }
+      100% {
+        filter: hue-rotate(180deg); /* Изменение цвета мембраны */
+      }
+    }
+
+    /* Анимация плавного подъёма мембраны вверх */
+    @keyframes membraneMoveUp {
+      0% {
+        transform: translateY(-330px);
+      }
+      100% {
+        transform: translateY(-750px); /* Поднимется до верхней границы блока */
+        margin-top: 20px; /* Отступ сверху */
+      }
+    }
+
+    /* Медленные и мягкие припрыжки мембраны */
+    @keyframes membraneBounce {
+      0% {
+        transform: translateY(-750px); /* Начинаем в верхней позиции */
+      }
+      50% {
+        transform: translateY(-757px); /* Легкий, быстрый прыжок */
+      }
+      100% {
+        transform: translateY(-750px); /* Возвращение на место */
+      }
+    }
+
+    /* Анимация появления блока с легкими */
+    @keyframes lungsBlockAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Анимация появления блока с интерферонами */
+    @keyframes interferonBlockAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Анимация появления текста интерферонов */
+    @keyframes interferonTextAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Описание для легких */
+    .lungs-description {
+      position: absolute;
+      bottom: 50px; /* Располагаем под легкими */
+      left: 0;
+      width: 100%;
+      max-width: 500px; /* Ограничиваем ширину по размеру легких */
+      text-align: center;
+      font-size: 18px;
+      color: #333;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+      margin: 0 auto;
+      opacity: 0;
+      animation: descriptionFadeIn 2s ease-in-out 17s forwards;
+    }
+
+    /* Анимация появления описания */
+    @keyframes descriptionFadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="animation-container">
+    <div class="molecule"></div>
+    <div class="receptor"></div>
+    <div class="membrane"></div>
+
+    <!-- Легкие (с цитокинами и без) -->
+    <div class="lungs-block">
+      <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_treat_main.png" alt="lungs with cytokines">
+      <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_clean_main.png" alt="lungs without cytokines">
+    </div>
+
+    <!-- Описание для легких -->
+    <div class="lungs-description">
+      Suppresses the hypersecretion of pro-inflammatory cytokines (such as IL-1, IL-6, and TNF-α), thereby reducing intoxication and controlling hyperinflammation with signs of cytokine storm and associated acute respiratory distress syndrome (ARDS).
+      <br><br>
+      Prevents lung damage, averting pneumonia.
+    </div>
+
+    <!-- Интерфероны -->
+    <div class="interferon-block">
+      <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/interferons.svg" alt="interferons">
+      <div class="interferon-text">
+        Stimulates the production of endogenous interferons at the early stages of infection.
+        <br><br>
+        Regulation of the phagocytic component activity of innate immunity (macrophages and neutrophils), along with the activity of lymphocytes – natural killers.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation: Molecule and Receptor</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Блок, в котором происходят анимации */
+    #animation-container {
+      position: relative;
+      width: 100%;
+      max-width: 2560px;
+      height: 1000px; /* Увеличенная высота */
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Молекула */
+    .molecule {
+      width: 200px;
+      height: 200px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/mu_agonist_main.svg') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      top: -200px; /* Начинаем выше */
+      z-index: 2;
+      animation: moveMolecule 6s ease-in-out forwards; /* Увеличена длительность */
+    }
+
+    /* Рецептор */
+    .receptor {
+      width: 300px;
+      height: 300px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/receptor_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      z-index: 1;
+      animation: receptorInitial 6s ease-in-out 1s forwards, receptorMoveDown 4s ease-in-out 9s forwards;
+      margin-right: 15px;
+    }
+
+    /* Мембрана */
+    .membrane {
+      width: 300px;
+      height: 330px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/membrane_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      bottom: -100px;
+      z-index: 0;
+      opacity: 0;
+      animation: 
+        membraneAnimation 3s ease-in-out 6s forwards, 
+        membraneColorChange 2.5s ease-in-out 12s forwards,
+        membraneMoveUp 2s ease-in-out 13s forwards,
+        membraneBounce 1.5s ease-in-out 15s infinite; /* Начало прыжков сразу после подъема */
+    }
+
+    /* Новый контейнер для легких и их описания */
+    .lungs-container {
+      position: absolute;
+      bottom: 150px; /* Поднято на 250 пикселей выше */
+      left: 0%;
+      width: 500px;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      flex-direction: column; /* Элементы в контейнере выстраиваются по вертикали */
+      opacity: 0;
+      animation: lungsBlockAnimation 3s ease-in-out 15s forwards;
+      z-index: 2; /* Убедитесь, что блок с легкими находится поверх описания */
+    }
+
+    /* Легкие */
+    .lungs-block {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      opacity: 0;
+      animation: lungsBlockAnimation 3s ease-in-out 15s forwards;
+    }
+
+    .lungs-block img {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      opacity: 0; /* Оба изображения по умолчанию невидимы */
+      animation: lungsImageChange 6s ease-in-out infinite;
+    }
+
+    .lungs-block img:first-child {
+      opacity: 1;
+      animation-delay: 0s; /* Первое изображение появляется первым */
+    }
+
+    .lungs-block img:last-child {
+      opacity: 0;
+      animation-delay: 3s; /* Второе изображение появляется позже */
+    }
+
+    /* Анимация чередования картинок легких */
+    @keyframes lungsImageChange {
+      0%, 100% {
+        opacity: 1; /* Первое изображение становится видимым */
+      }
+      50% {
+        opacity: 0; /* Первое изображение исчезает */
+      }
+    }
+
+    /* Анимация появления блока с легкими */
+    @keyframes lungsBlockAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Описание для легких */
+    .lungs-description {
+      text-align: center;
+      color: #333;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+      margin-top: 20px; /* Добавлен отступ сверху */
+      opacity: 0;
+      animation: descriptionFadeIn 2s ease-in-out 17s forwards;
+      margin-top: 420px;
+    }
+
+    /* Анимация появления описания */
+    @keyframes descriptionFadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Интерфероны */
+    .interferon-block {
+      position: absolute;
+      bottom: 150px; /* Поднято на 250 пикселей выше */
+      right: 0%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: interferonBlockAnimation 3s ease-in-out 15s forwards;
+    }
+
+    .interferon-block img {
+      width: 500px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .interferon-text {
+      font-size: 16px;
+      color: #333;
+      text-align: center;
+      opacity: 0;
+      animation: interferonTextAnimation 3s ease-in-out 18s forwards;
+      max-width: 350px;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+      line-height: 1.5;
+    }
+
+    /* Анимация молекулы (входит в центр рецептора и исчезает) */
+    @keyframes moveMolecule {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(350px); /* Молекула входит в центр рецептора */
+        opacity: 1;
+      }
+      75% {
+        transform: translateY(300px); /* Молекула внутри рецептора */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(750px); /* Молекула движется ещё ниже */
+        opacity: 0; /* Молекула исчезает позже */
+      }
+    }
+
+    /* Начальная анимация рецептора */
+    @keyframes receptorInitial {
+      0% {
+        transform: translateY(0);
+        filter: none;
+      }
+      70% {
+        transform: translateY(100px); /* Рецептор слегка смещается вниз */
+        filter: none; /* Цвет остаётся изначальным */
+      }
+      85% {
+        transform: translateY(150px); /* Держится на месте */
+        filter: hue-rotate(90deg); /* Изменение цвета спустя 4 секунды */
+      }
+      100% {
+        transform: translateY(-250px); /* Рецептор поднимается выше */
+        filter: hue-rotate(90deg); /* Цвет остаётся изменённым */
+      }
+    }
+
+    /* Анимация движения вниз и исчезновения рецептора */
+    @keyframes receptorMoveDown {
+      0% {
+        transform: translateY(-250px);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-200px); /* Центр мембраны, поднят на 350px */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0); /* Под мембраной, поднят на 350px */
+        opacity: 0; /* Исчезает */
+      }
+    }
+
+    /* Анимация мембраны (появление снизу и движение вверх) */
+    @keyframes membraneAnimation {
+      0% {
+        transform: translateY(20px); /* Начинаем с небольшой смещённости вниз */
+        opacity: 0; /* Мембрана скрыта в начале */
+      }
+      50% {
+        transform: translateY(0); /* Мембрана поднимается вверх */
+        opacity: 1; /* Мембрана становится видимой */
+      }
+      100% {
+        transform: translateY(-330px); /* Мембрана поднимется вверх */
+        opacity: 1; /* Мембрана остаётся видимой */
+      }
+    }
+
+    /* Анимация изменения цвета мембраны */
+    @keyframes membraneColorChange {
+      0% {
+        filter: none;
+      }
+      100% {
+        filter: hue-rotate(180deg); /* Изменение цвета мембраны */
+      }
+    }
+
+    /* Анимация плавного подъёма мембраны вверх */
+    @keyframes membraneMoveUp {
+      0% {
+        transform: translateY(-330px);
+      }
+      100% {
+        transform: translateY(-750px); /* Поднимется до верхней границы блока */
+        margin-top: 20px; /* Отступ сверху */
+      }
+    }
+
+    /* Медленные и мягкие припрыжки мембраны */
+    @keyframes membraneBounce {
+      0% {
+        transform: translateY(-750px); /* Начинаем в верхней позиции */
+      }
+      50% {
+        transform: translateY(-757px); /* Легкий, быстрый прыжок */
+      }
+      100% {
+        transform: translateY(-750px); /* Возвращение на место */
+      }
+    }
+
+    /* Анимация появления блока с интерферонами */
+    @keyframes interferonBlockAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Анимация появления текста интерферонов */
+    @keyframes interferonTextAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .lungs-container {
+        width: 100% !important;
+        bottom: 190px;
+      }
+      .lungs-container img {
+        max-width: 300px;
+      }
+      .lungs-description {
+        margin-top: 270px;
+        max-width: 270px;
+        align-self: center;
+      }
+      .interferon-block {
+        width: 100%;
+        bottom: -280px;
+        padding-bottom: 30px;
+      }
+      .interferon-text {
+        max-width: 270px;
+      }
+      .interferon-block img {
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="animation-container">
+    <div class="molecule"></div>
+    <div class="receptor"></div>
+    <div class="membrane"></div>
+
+    <!-- Новый родительский блок для легких и их описания -->
+    <div class="lungs-container">
+      <div class="lungs-block">
+        <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_treat_main.png" alt="lungs with cytokines">
+        <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_clean_main.png" alt="lungs without cytokines">
+      </div>
+
+      <!-- Описание для легких -->
+      <div class="lungs-description">
+        Suppresses the hypersecretion of pro-inflammatory cytokines (such as IL-1, IL-6, and TNF-α), thereby reducing intoxication and controlling hyperinflammation with signs of cytokine storm and associated acute respiratory distress syndrome (ARDS).
+        <br><br>
+        Prevents lung damage, averting pneumonia.
+      </div>
+    </div>
+
+    <!-- Интерфероны -->
+    <div class="interferon-block">
+      <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/interferons.svg" alt="interferons">
+      <div class="interferon-text">
+        Stimulates the production of endogenous interferons at the early stages of infection.
+        <br><br>
+        Regulation of the phagocytic component activity of innate immunity (macrophages and neutrophils), along with the activity of lymphocytes – natural killers.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation: Molecule and Receptor</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Блок, в котором происходят анимации */
+    #animation-container {
+      position: relative;
+      width: 100%;
+      max-width: 2560px;
+      height: 1000px; /* Увеличенная высота */
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Молекула */
+    .molecule {
+      width: 200px;
+      height: 200px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/mu_agonist_main.svg') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      top: -200px; /* Начинаем выше */
+      z-index: 2;
+      animation: moveMolecule 6s ease-in-out forwards; /* Увеличена длительность */
+    }
+
+    /* Рецептор */
+    .receptor {
+      width: 300px;
+      height: 300px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/receptor_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      z-index: 1;
+      animation: receptorInitial 6s ease-in-out 1s forwards, receptorMoveDown 4s ease-in-out 9s forwards;
+      margin-right: 15px;
+    }
+
+    /* Мембрана */
+    .membrane {
+      width: 300px;
+      height: 330px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/membrane_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      bottom: -100px;
+      z-index: 0;
+      opacity: 0;
+      animation: 
+        membraneAnimation 3s ease-in-out 6s forwards, 
+        membraneColorChange 2.5s ease-in-out 12s forwards,
+        membraneMoveUp 2s ease-in-out 13s forwards,
+        membraneBounce 1.5s ease-in-out 15s infinite; /* Начало прыжков сразу после подъема */
+    }
+
+    /* Новый контейнер для легких и их описания */
+    .lungs-container {
+      position: absolute;
+      bottom: 150px; /* Поднято на 250 пикселей выше */
+      left: 0%;
+      width: 500px;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      flex-direction: column; /* Элементы в контейнере выстраиваются по вертикали */
+      opacity: 0;
+      animation: lungsBlockAnimation 3s ease-in-out 15s forwards;
+      z-index: 2; /* Убедитесь, что блок с легкими находится поверх описания */
+    }
+
+    /* Легкие */
+    .lungs-block {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      opacity: 0;
+      animation: lungsBlockAnimation 3s ease-in-out 15s forwards;
+    }
+
+    .lungs-block img {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      opacity: 0; /* Оба изображения по умолчанию невидимы */
+      animation: lungsImageChange 6s ease-in-out infinite;
+    }
+
+    .lungs-block img:first-child {
+      opacity: 1;
+      animation-delay: 0s; /* Первое изображение появляется первым */
+    }
+
+    .lungs-block img:last-child {
+      opacity: 0;
+      animation-delay: 3s; /* Второе изображение появляется позже */
+    }
+
+    /* Анимация чередования картинок легких */
+    @keyframes lungsImageChange {
+      0%, 100% {
+        opacity: 1; /* Первое изображение становится видимым */
+      }
+      50% {
+        opacity: 0; /* Первое изображение исчезает */
+      }
+    }
+
+    /* Анимация появления блока с легкими */
+    @keyframes lungsBlockAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Описание для легких */
+    .lungs-description {
+      text-align: center;
+      color: #333;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+      margin-top: 20px; /* Добавлен отступ сверху */
+      opacity: 0;
+      animation: descriptionFadeIn 2s ease-in-out 17s forwards;
+      margin-top: 420px;
+    }
+
+    /* Анимация появления описания */
+    @keyframes descriptionFadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Интерфероны */
+    .interferon-block {
+      position: absolute;
+      bottom: 150px; /* Поднято на 250 пикселей выше */
+      right: 0%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: interferonBlockAnimation 3s ease-in-out 15s forwards;
+    }
+
+    .interferon-block img {
+      width: 500px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .interferon-text {
+      font-size: 16px;
+      color: #333;
+      text-align: center;
+      opacity: 0;
+      animation: interferonTextAnimation 3s ease-in-out 18s forwards;
+      max-width: 350px;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+      line-height: 1.5;
+    }
+
+    /* Анимация молекулы (входит в центр рецептора и исчезает) */
+    @keyframes moveMolecule {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(350px); /* Молекула входит в центр рецептора */
+        opacity: 1;
+      }
+      75% {
+        transform: translateY(300px); /* Молекула внутри рецептора */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(750px); /* Молекула движется ещё ниже */
+        opacity: 0; /* Молекула исчезает позже */
+      }
+    }
+
+    /* Начальная анимация рецептора */
+    @keyframes receptorInitial {
+      0% {
+        transform: translateY(0);
+        filter: none;
+      }
+      70% {
+        transform: translateY(100px); /* Рецептор слегка смещается вниз */
+        filter: none; /* Цвет остаётся изначальным */
+      }
+      85% {
+        transform: translateY(150px); /* Держится на месте */
+        filter: hue-rotate(90deg); /* Изменение цвета спустя 4 секунды */
+      }
+      100% {
+        transform: translateY(-250px); /* Рецептор поднимается выше */
+        filter: hue-rotate(90deg); /* Цвет остаётся изменённым */
+      }
+    }
+
+    /* Анимация движения вниз и исчезновения рецептора */
+    @keyframes receptorMoveDown {
+      0% {
+        transform: translateY(-250px);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-200px); /* Центр мембраны, поднят на 350px */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0); /* Под мембраной, поднят на 350px */
+        opacity: 0; /* Исчезает */
+      }
+    }
+
+    /* Анимация мембраны (появление снизу и движение вверх) */
+    @keyframes membraneAnimation {
+      0% {
+        transform: translateY(20px); /* Начинаем с небольшой смещённости вниз */
+        opacity: 0; /* Мембрана скрыта в начале */
+      }
+      50% {
+        transform: translateY(0); /* Мембрана поднимается вверх */
+        opacity: 1; /* Мембрана становится видимой */
+      }
+      100% {
+        transform: translateY(-330px); /* Мембрана поднимется вверх */
+        opacity: 1; /* Мембрана остаётся видимой */
+      }
+    }
+
+    /* Анимация изменения цвета мембраны */
+    @keyframes membraneColorChange {
+      0% {
+        filter: none;
+      }
+      100% {
+        filter: hue-rotate(180deg); /* Изменение цвета мембраны */
+      }
+    }
+
+    /* Анимация плавного подъёма мембраны вверх */
+    @keyframes membraneMoveUp {
+      0% {
+        transform: translateY(-330px);
+      }
+      100% {
+        transform: translateY(-750px); /* Поднимется до верхней границы блока */
+        margin-top: 20px; /* Отступ сверху */
+      }
+    }
+
+    /* Медленные и мягкие припрыжки мембраны */
+    @keyframes membraneBounce {
+      0% {
+        transform: translateY(-750px); /* Начинаем в верхней позиции */
+      }
+      50% {
+        transform: translateY(-757px); /* Легкий, быстрый прыжок */
+      }
+      100% {
+        transform: translateY(-750px); /* Возвращение на место */
+      }
+    }
+
+    /* Анимация появления блока с интерферонами */
+    @keyframes interferonBlockAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Анимация появления текста интерферонов */
+    @keyframes interferonTextAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .lungs-container {
+        width: 100% !important;
+        bottom: 190px;
+      }
+      .lungs-container img {
+        max-width: 300px;
+      }
+      .lungs-description {
+        margin-top: 270px;
+        max-width: 270px;
+        align-self: center;
+      }
+      .interferon-block {
+        width: 100%;
+        bottom: -280px;
+        padding-bottom: 30px;
+      }
+      .interferon-text {
+        max-width: 270px;
+      }
+      .interferon-block img {
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="animation-container">
+    <div class="molecule"></div>
+    <div class="receptor"></div>
+    <div class="membrane"></div>
+
+    <!-- Новый родительский блок для легких и их описания -->
+    <div class="lungs-container">
+      <div class="lungs-block">
+        <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_treat_main.png" alt="lungs with cytokines">
+        <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_clean_main.png" alt="lungs without cytokines">
+      </div>
+
+      <!-- Описание для легких -->
+      <div class="lungs-description">
+        Suppresses the hypersecretion of pro-inflammatory cytokines (such as IL-1, IL-6, and TNF-α), thereby reducing intoxication and controlling hyperinflammation with signs of cytokine storm and associated acute respiratory distress syndrome (ARDS).
+        <br><br>
+        Prevents lung damage, averting pneumonia.
+      </div>
+    </div>
+
+    <!-- Интерфероны -->
+    <div class="interferon-block">
+      <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/interferons.svg" alt="interferons">
+      <div class="interferon-text">
+        Stimulates the production of endogenous interferons at the early stages of infection.
+        <br><br>
+        Regulation of the phagocytic component activity of innate immunity (macrophages and neutrophils), along with the activity of lymphocytes – natural killers.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function restartAnimation() {
+      const molecule = document.querySelector('.molecule');
+      const receptor = document.querySelector('.receptor');
+      const membrane = document.querySelector('.membrane');
+      const lungsContainer = document.querySelector('.lungs-container');
+      const interferonBlock = document.querySelector('.interferon-block');
+
+      // Удаляем и перезапускаем классы анимации для всех элементов
+      molecule.style.animation = 'none';
+      receptor.style.animation = 'none';
+      membrane.style.animation = 'none';
+      lungsContainer.style.animation = 'none';
+      interferonBlock.style.animation = 'none';
+
+      // Пауза, чтобы все анимации остановились
+      setTimeout(function () {
+        molecule.style.animation = '';
+        receptor.style.animation = '';
+        membrane.style.animation = '';
+        lungsContainer.style.animation = '';
+        interferonBlock.style.animation = '';
+      }, 50); // Пауза очень короткая для восстановления анимаций
+
+    }
+
+    // Запуск перезапуска анимации через 25 секунд
+    setInterval(restartAnimation, 25000);
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation: Molecule and Receptor</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Блок, в котором происходят анимации */
+    #animation-container {
+      position: relative;
+      width: 100%;
+      max-width: 2560px;
+      height: 1000px; /* Увеличенная высота */
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Молекула */
+    .molecule {
+      width: 200px;
+      height: 200px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/mu_agonist_main.svg') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      top: -200px; /* Начинаем выше */
+      z-index: 2;
+      animation: moveMolecule 6s ease-in-out forwards; /* Увеличена длительность */
+    }
+
+    /* Рецептор */
+    .receptor {
+      width: 300px;
+      height: 300px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/receptor_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      z-index: 1;
+      animation: receptorInitial 6s ease-in-out 1s forwards, receptorMoveDown 4.5s ease-out 9s forwards;
+      margin-right: 15px;
+    }
+
+    /* Мембрана */
+    .membrane {
+      width: 300px;
+      height: 330px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/membrane_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      bottom: -100px;
+      z-index: 0;
+      opacity: 0;
+      animation: 
+        membraneAnimation 3s ease-in-out 6s forwards, 
+        membraneColorChange 2.5s ease-in-out 12s forwards,
+        membraneMoveUp 2s ease-in-out 13s forwards,
+        membraneBounce 1.5s ease-in-out 15s infinite; /* Начало прыжков сразу после подъема */
+    }
+
+    /* Новый контейнер для легких и их описания */
+    .lungs-container {
+      position: absolute;
+      bottom: 150px; /* Поднято на 250 пикселей выше */
+      left: 0%;
+      width: 500px;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      flex-direction: column; /* Элементы в контейнере выстраиваются по вертикали */
+      opacity: 0;
+      animation: lungsBlockAnimation 3s ease-in-out 15s forwards;
+      z-index: 2; /* Убедитесь, что блок с легкими находится поверх описания */
+    }
+
+    /* Легкие */
+    .lungs-block {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      opacity: 0;
+      animation: lungsBlockAnimation 3s ease-in-out 15s forwards;
+    }
+
+    .lungs-block img {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      opacity: 0; /* Оба изображения по умолчанию невидимы */
+      animation: lungsImageChange 6s ease-in-out infinite;
+    }
+
+    .lungs-block img:first-child {
+      opacity: 1;
+      animation-delay: 0s; /* Первое изображение появляется первым */
+    }
+
+    .lungs-block img:last-child {
+      opacity: 0;
+      animation-delay: 3s; /* Второе изображение появляется позже */
+    }
+
+    /* Анимация чередования картинок легких */
+    @keyframes lungsImageChange {
+      0%, 100% {
+        opacity: 1; /* Первое изображение становится видимым */
+      }
+      50% {
+        opacity: 0; /* Первое изображение исчезает */
+      }
+    }
+
+    /* Анимация появления блока с легкими */
+    @keyframes lungsBlockAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Описание для легких */
+    .lungs-description {
+      text-align: center;
+      color: #333;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+      margin-top: 20px; /* Добавлен отступ сверху */
+      opacity: 0;
+      animation: descriptionFadeIn 2s ease-in-out 17s forwards;
+      margin-top: 420px;
+    }
+
+    /* Анимация появления описания */
+    @keyframes descriptionFadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Интерфероны */
+    .interferon-block {
+      position: absolute;
+      bottom: 150px; /* Поднято на 250 пикселей выше */
+      right: 0%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: interferonBlockAnimation 3s ease-in-out 15s forwards;
+    }
+
+    .interferon-block img {
+      width: 500px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .interferon-text {
+      font-size: 16px;
+      color: #333;
+      text-align: center;
+      opacity: 0;
+      animation: interferonTextAnimation 3s ease-in-out 18s forwards;
+      max-width: 350px;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+      line-height: 1.5;
+    }
+
+    /* Анимация молекулы (входит в центр рецептора и исчезает) */
+    @keyframes moveMolecule {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(350px); /* Молекула входит в центр рецептора */
+        opacity: 1;
+      }
+      75% {
+        transform: translateY(300px); /* Молекула внутри рецептора */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(750px); /* Молекула движется ещё ниже */
+        opacity: 0; /* Молекула исчезает позже */
+      }
+    }
+
+    /* Начальная анимация рецептора */
+    @keyframes receptorInitial {
+      0% {
+        transform: translateY(0);
+        filter: none;
+      }
+      70% {
+        transform: translateY(100px); /* Рецептор слегка смещается вниз */
+        filter: none; /* Цвет остаётся изначальным */
+      }
+      85% {
+        transform: translateY(150px); /* Держится на месте */
+        filter: hue-rotate(90deg); /* Изменение цвета спустя 4 секунды */
+      }
+      100% {
+        transform: translateY(-250px); /* Рецептор поднимается выше */
+        filter: hue-rotate(90deg); /* Цвет остаётся изменённым */
+      }
+    }
+
+    /* Анимация движения вниз и исчезновения рецептора */
+    @keyframes receptorMoveDown {
+      0% {
+        transform: translateY(-250px);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-50px); /* Центр мембраны, поднят на 350px */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0); /* Под мембраной, поднят на 350px */
+        opacity: 0; /* Исчезает */
+      }
+    }
+
+    /* Анимация мембраны (появление снизу и движение вверх) */
+     @keyframes membraneAnimation {
+      0% {
+        transform: translateY(20px); /* Начинаем с небольшой смещённости вниз */
+        opacity: 0; /* Мембрана скрыта в начале */
+      }
+      50% {
+        transform: translateY(0); /* Мембрана поднимается вверх */
+        opacity: 1; /* Мембрана становится видимой */
+      }
+      75% {
+        transform: translateY(-330px); /* Мембрана поднимется вверх */
+        opacity: 1; /* Мембрана остаётся видимой */
+      }
+      100% {
+        transform: translateY(-390px); /* Мембрана поднимется ещё на 30px */
+        opacity: 1; /* Мембрана остаётся видимой */
+      }
+    }
+
+
+    /* Анимация изменения цвета мембраны */
+    @keyframes membraneColorChange {
+      0% {
+        filter: none;
+      }
+      100% {
+        filter: hue-rotate(180deg); /* Изменение цвета мембраны */
+      }
+    }
+
+    /* Анимация плавного подъёма мембраны вверх */
+    @keyframes membraneMoveUp {
+      0% {
+        transform: translateY(-390px);
+      }
+      100% {
+        transform: translateY(-750px); /* Поднимется до верхней границы блока */
+        margin-top: 20px; /* Отступ сверху */
+      }
+    }
+
+    /* Медленные и мягкие припрыжки мембраны */
+    @keyframes membraneBounce {
+      0% {
+        transform: translateY(-750px); /* Начинаем в верхней позиции */
+      }
+      50% {
+        transform: translateY(-757px); /* Легкий, быстрый прыжок */
+      }
+      100% {
+        transform: translateY(-750px); /* Возвращение на место */
+      }
+    }
+
+    /* Анимация появления блока с интерферонами */
+    @keyframes interferonBlockAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Анимация появления текста интерферонов */
+    @keyframes interferonTextAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .lungs-container {
+        width: 100% !important;
+        bottom: 190px;
+      }
+      .lungs-container img {
+        max-width: 300px;
+      }
+      .lungs-description {
+        margin-top: 270px;
+        max-width: 270px;
+        align-self: center;
+      }
+      .interferon-block {
+        width: 100%;
+        bottom: -280px;
+        padding-bottom: 30px;
+      }
+      .interferon-text {
+        max-width: 270px;
+      }
+      .interferon-block img {
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="animation-container">
+    <div class="molecule"></div>
+    <div class="receptor"></div>
+    <div class="membrane"></div>
+
+    <!-- Новый родительский блок для легких и их описания -->
+    <div class="lungs-container">
+      <div class="lungs-block">
+        <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_treat_main.png" alt="lungs with cytokines">
+        <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_clean_main.png" alt="lungs without cytokines">
+      </div>
+
+      <!-- Описание для легких -->
+      <div class="lungs-description">
+        Suppresses the hypersecretion of pro-inflammatory cytokines (such as IL-1, IL-6, and TNF-α), thereby reducing intoxication and controlling hyperinflammation with signs of cytokine storm and associated acute respiratory distress syndrome (ARDS).
+        <br><br>
+        Prevents lung damage, averting pneumonia.
+      </div>
+    </div>
+
+    <!-- Интерфероны -->
+    <div class="interferon-block">
+      <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/interferons.svg" alt="interferons">
+      <div class="interferon-text">
+        Stimulates the production of endogenous interferons at the early stages of infection.
+        <br><br>
+        Regulation of the phagocytic component activity of innate immunity (macrophages and neutrophils), along with the activity of lymphocytes – natural killers.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function restartAnimation() {
+      const molecule = document.querySelector('.molecule');
+      const receptor = document.querySelector('.receptor');
+      const membrane = document.querySelector('.membrane');
+      const lungsContainer = document.querySelector('.lungs-container');
+      const interferonBlock = document.querySelector('.interferon-block');
+
+      // Удаляем и перезапускаем классы анимации для всех элементов
+      molecule.style.animation = 'none';
+      receptor.style.animation = 'none';
+      membrane.style.animation = 'none';
+      lungsContainer.style.animation = 'none';
+      interferonBlock.style.animation = 'none';
+
+      // Пауза, чтобы все анимации остановились
+      setTimeout(function () {
+        molecule.style.animation = '';
+        receptor.style.animation = '';
+        membrane.style.animation = '';
+        lungsContainer.style.animation = '';
+        interferonBlock.style.animation = '';
+      }, 50); // Пауза очень короткая для восстановления анимаций
+
+    }
+
+    // Запуск перезапуска анимации через 25 секунд
+    setInterval(restartAnimation, 25000);
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation: Molecule and Receptor</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Блок, в котором происходят анимации */
+    #animation-container {
+      position: relative;
+      width: 100%;
+      max-width: 2560px;
+      height: 1000px; /* Увеличенная высота */
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Молекула */
+    .molecule {
+      width: 200px;
+      height: 200px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/mu_agonist_main.svg') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      top: -200px; /* Начинаем выше */
+      z-index: 2;
+      animation: moveMolecule 6s ease-in-out forwards; /* Увеличена длительность */
+    }
+
+      /* Плавное появление рецептора */
+  @keyframes receptorFadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Рецептор */
+  .receptor {
+    width: 300px;
+    height: 300px;
+    background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/receptor_main.png') no-repeat center;
+    background-size: contain;
+    position: absolute;
+    z-index: 1;
+    opacity: 0; /* Изменено: начальная невидимость */
+    animation: 
+      receptorFadeIn 2s ease-in-out forwards, /* Новое: плавное появление */
+      receptorInitial 5s ease-in-out 1.8s forwards, /* Смещение начала других анимаций */
+      receptorMoveDown 4.5s ease-out 9s forwards;
+    margin-right: 15px;
+  }
+
+    /* Мембрана */
+    .membrane {
+      width: 300px;
+      height: 330px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/membrane_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      bottom: -100px;
+      z-index: 0;
+      opacity: 0;
+      animation: 
+        membraneAnimation 3s ease-in-out 6s forwards, 
+        membraneColorChange 2.5s ease-in-out 12s forwards,
+        membraneMoveUp 2s ease-in-out 13s forwards,
+        membraneBounce 1.5s ease-in-out 15s infinite; /* Начало прыжков сразу после подъема */
+    }
+
+    /* Новый контейнер для легких и их описания */
+    .lungs-container {
+      position: absolute;
+      bottom: 150px; /* Поднято на 250 пикселей выше */
+      left: 0%;
+      width: 500px;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      flex-direction: column; /* Элементы в контейнере выстраиваются по вертикали */
+      opacity: 0;
+      animation: lungsBlockAnimation 3s ease-in-out 15s forwards;
+      z-index: 2; /* Убедитесь, что блок с легкими находится поверх описания */
+    }
+
+    /* Легкие */
+    .lungs-block {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      opacity: 0;
+      animation: lungsBlockAnimation 3s ease-in-out 15s forwards;
+    }
+
+    .lungs-block img {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      opacity: 0; /* Оба изображения по умолчанию невидимы */
+      animation: lungsImageChange 6s ease-in-out infinite;
+    }
+
+    .lungs-block img:first-child {
+      opacity: 1;
+      animation-delay: 0s; /* Первое изображение появляется первым */
+    }
+
+    .lungs-block img:last-child {
+      opacity: 0;
+      animation-delay: 3s; /* Второе изображение появляется позже */
+    }
+    /* Анимация чередования картинок легких */
+    @keyframes lungsImageChange {
+      0%, 100% {
+        opacity: 1; /* Первое изображение становится видимым */
+      }
+      50% {
+        opacity: 0; /* Первое изображение исчезает */
+      }
+    }
+
+    /* Анимация появления блока с легкими */
+    @keyframes lungsBlockAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Описание для легких */
+    .lungs-description {
+      text-align: center;
+      color: #333;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+      margin-top: 20px; /* Добавлен отступ сверху */
+      opacity: 0;
+      animation: descriptionFadeIn 2s ease-in-out 17s forwards;
+      margin-top: 420px;
+      font-size: 16px;
+    }
+
+    /* Анимация появления описания */
+    @keyframes descriptionFadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Интерфероны */
+    .interferon-block {
+      position: absolute;
+      bottom: 150px; /* Поднято на 250 пикселей выше */
+      right: 0%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: interferonBlockAnimation 3s ease-in-out 15s forwards;
+    }
+
+    .interferon-block img {
+      width: 500px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .interferon-text {
+      font-size: 16px;
+      color: #333;
+      text-align: center;
+      opacity: 0;
+      animation: interferonTextAnimation 3s ease-in-out 18s forwards;
+      max-width: 350px;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+      line-height: 1.5;
+    }
+
+    /* Анимация молекулы (входит в центр рецептора и исчезает) */
+    @keyframes moveMolecule {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(350px); /* Молекула входит в центр рецептора */
+        opacity: 1;
+      }
+      75% {
+        transform: translateY(300px); /* Молекула внутри рецептора */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(750px); /* Молекула движется ещё ниже */
+        opacity: 0; /* Молекула исчезает позже */
+      }
+    }
+
+    /* Начальная анимация рецептора */
+    @keyframes receptorInitial {
+      0% {
+        transform: translateY(0);
+        filter: none;
+      }
+      70% {
+        transform: translateY(100px); /* Рецептор слегка смещается вниз */
+        filter: none; /* Цвет остаётся изначальным */
+      }
+      85% {
+        transform: translateY(150px); /* Держится на месте */
+        filter: hue-rotate(90deg); /* Изменение цвета спустя 4 секунды */
+      }
+      100% {
+        transform: translateY(-250px); /* Рецептор поднимается выше */
+        filter: hue-rotate(90deg); /* Цвет остаётся изменённым */
+      }
+    }
+
+    /* Анимация движения вниз и исчезновения рецептора */
+    @keyframes receptorMoveDown {
+      0% {
+        transform: translateY(-250px);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-50px); /* Центр мембраны, поднят на 350px */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0); /* Под мембраной, поднят на 350px */
+        opacity: 0; /* Исчезает */
+      }
+    }
+
+    /* Анимация мембраны (появление снизу и движение вверх) */
+     @keyframes membraneAnimation {
+      0% {
+        transform: translateY(20px); /* Начинаем с небольшой смещённости вниз */
+        opacity: 0; /* Мембрана скрыта в начале */
+      }
+      50% {
+        transform: translateY(0); /* Мембрана поднимается вверх */
+        opacity: 1; /* Мембрана становится видимой */
+      }
+      75% {
+        transform: translateY(-330px); /* Мембрана поднимется вверх */
+        opacity: 1; /* Мембрана остаётся видимой */
+      }
+      100% {
+        transform: translateY(-390px); /* Мембрана поднимется ещё на 30px */
+        opacity: 1; /* Мембрана остаётся видимой */
+      }
+    }
+
+     /* Плавное появление рецептора */
+    @keyframes receptorFadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    /* Анимация изменения цвета мембраны */
+    @keyframes membraneColorChange {
+      0% {
+        filter: none;
+      }
+      100% {
+        filter: hue-rotate(180deg); /* Изменение цвета мембраны */
+      }
+    }
+
+    /* Анимация плавного подъёма мембраны вверх */
+    @keyframes membraneMoveUp {
+      0% {
+        transform: translateY(-390px);
+      }
+      100% {
+        transform: translateY(-750px); /* Поднимется до верхней границы блока */
+        margin-top: 20px; /* Отступ сверху */
+      }
+    }
+
+    /* Медленные и мягкие припрыжки мембраны */
+    @keyframes membraneBounce {
+      0% {
+        transform: translateY(-750px); /* Начинаем в верхней позиции */
+      }
+      50% {
+        transform: translateY(-757px); /* Легкий, быстрый прыжок */
+      }
+      100% {
+        transform: translateY(-750px); /* Возвращение на место */
+      }
+    }
+
+    /* Анимация появления блока с интерферонами */
+    @keyframes interferonBlockAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Анимация появления текста интерферонов */
+    @keyframes interferonTextAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .lungs-container {
+        width: 100% !important;
+        bottom: 190px;
+      }
+      .lungs-container img {
+        max-width: 300px;
+      }
+      .lungs-description {
+        margin-top: 270px;
+        max-width: 270px;
+        align-self: center;
+      }
+      .interferon-block {
+        width: 100%;
+        bottom: -280px;
+        padding-bottom: 30px;
+      }
+      .interferon-text {
+        max-width: 270px;
+      }
+      .interferon-block img {
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="animation-container">
+    <div class="molecule"></div>
+    <div class="receptor"></div>
+    <div class="membrane"></div>
+
+    <!-- Новый родительский блок для легких и их описания -->
+    <div class="lungs-container">
+      <div class="lungs-block">
+        <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_treat_main.png" alt="lungs with cytokines">
+        <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_clean_main.png" alt="lungs without cytokines">
+      </div>
+
+      <!-- Описание для легких -->
+      <div class="lungs-description">
+        Suppresses the hypersecretion of pro-inflammatory cytokines (such as IL-1, IL-6, and TNF-α), thereby reducing intoxication and controlling hyperinflammation with signs of cytokine storm and associated acute respiratory distress syndrome (ARDS).
+        <br><br>
+        Prevents lung damage, averting pneumonia.
+      </div>
+    </div>
+
+    <!-- Интерфероны -->
+    <div class="interferon-block">
+      <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/interferons.svg" alt="interferons">
+      <div class="interferon-text">
+        Stimulates the production of endogenous interferons at the early stages of infection.
+        <br><br>
+        Regulation of the phagocytic component activity of innate immunity (macrophages and neutrophils), along with the activity of lymphocytes – natural killers.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function restartAnimation() {
+      const molecule = document.querySelector('.molecule');
+      const receptor = document.querySelector('.receptor');
+      const membrane = document.querySelector('.membrane');
+      const lungsContainer = document.querySelector('.lungs-container');
+      const interferonBlock = document.querySelector('.interferon-block');
+
+      // Удаляем и перезапускаем классы анимации для всех элементов
+      molecule.style.animation = 'none';
+      receptor.style.animation = 'none';
+      membrane.style.animation = 'none';
+      lungsContainer.style.animation = 'none';
+      interferonBlock.style.animation = 'none';
+
+      // Пауза, чтобы все анимации остановились
+      setTimeout(function () {
+        molecule.style.animation = '';
+        receptor.style.animation = '';
+        membrane.style.animation = '';
+        lungsContainer.style.animation = '';
+        interferonBlock.style.animation = '';
+      }, 50); // Пауза очень короткая для восстановления анимаций
+
+    }
+
+    // Запуск перезапуска анимации через 25 секунд
+    setInterval(restartAnimation, 30000);
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation: Molecule and Receptor</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Блок, в котором происходят анимации */
+    #animation-container {
+      position: relative;
+      width: 100%;
+      max-width: 2560px;
+      height: 1000px; /* Увеличенная высота */
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Молекула */
+    .molecule {
+      width: 200px;
+      height: 200px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/mu_agonist_main.svg') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      top: -200px; /* Начинаем выше */
+      z-index: 2;
+      animation: moveMolecule 6s ease-in-out forwards; /* Увеличена длительность */
+    }
+     .molecule::after {
+      content: 'µ-agonist';
+      position: absolute;
+      font-size: 16px;
+      color: #333; /* Цвет текста */
+      background-color: #f9f9f9; /* Цвет фона */
+      padding: 8px 15px; /* Отступы */
+      border-radius: 8px; /* Скругленные углы */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+  }
+
+      /* Плавное появление рецептора */
+  @keyframes receptorFadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Рецептор */
+  .receptor {
+    width: 300px;
+    height: 300px;
+    background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/receptor_main.png') no-repeat center;
+    background-size: contain;
+    position: absolute;
+    z-index: 1;
+    opacity: 0; /* Изменено: начальная невидимость */
+    animation: 
+      receptorFadeIn 2s ease-in-out forwards, /* Новое: плавное появление */
+      receptorInitial 5s ease-in-out 1.8s forwards, /* Смещение начала других анимаций */
+      receptorMoveDown 4.5s ease-out 9s forwards;
+    margin-right: 15px;
+  }
+  .receptor::after {
+      content: 'receptor';
+      position: absolute;
+      font-size: 16px;
+      color: #333; /* Цвет текста */
+      background-color: #f9f9f9; /* Цвет фона */
+      padding: 8px 15px; /* Отступы */
+      border-radius: 8px; /* Скругленные углы */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+  }
+    /* Мембрана */
+    .membrane {
+      width: 300px;
+      height: 330px;
+      background: url('https://pandadevelopmentcompany.github.io/arvidal_assets/membrane_main.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      bottom: -100px;
+      z-index: 0;
+      opacity: 0;
+      animation: 
+        membraneAnimation 3s ease-in-out 6s forwards, 
+        membraneColorChange 2.5s ease-in-out 12s forwards,
+        membraneMoveUp 2s ease-in-out 13s forwards,
+        membraneBounce 1.5s ease-in-out 15s infinite; /* Начало прыжков сразу после подъема */
+    }
+     .membrane::after {
+      content: 'membrane cell';
+      position: absolute;
+      font-size: 16px;
+      color: #333; /* Цвет текста */
+      background-color: #f9f9f9; /* Цвет фона */
+      padding: 8px 15px; /* Отступы */
+      border-radius: 8px; /* Скругленные углы */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+  }
+
+    /* Новый контейнер для легких и их описания */
+    .lungs-container {
+      position: absolute;
+      bottom: 150px; /* Поднято на 250 пикселей выше */
+      left: 0%;
+      width: 500px;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      flex-direction: column; /* Элементы в контейнере выстраиваются по вертикали */
+      opacity: 0;
+      animation: lungsBlockAnimation 3s ease-in-out 15s forwards;
+      z-index: 2; /* Убедитесь, что блок с легкими находится поверх описания */
+    }
+
+    /* Легкие */
+    .lungs-block {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      opacity: 0;
+      animation: lungsBlockAnimation 3s ease-in-out 15s forwards;
+    }
+
+    .lungs-block img {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      opacity: 0; /* Оба изображения по умолчанию невидимы */
+      animation: lungsImageChange 6s ease-in-out infinite;
+    }
+
+    .lungs-block img:first-child {
+      opacity: 1;
+      animation-delay: 0s; /* Первое изображение появляется первым */
+    }
+
+    .lungs-block img:last-child {
+      opacity: 0;
+      animation-delay: 3s; /* Второе изображение появляется позже */
+    }
+    /* Анимация чередования картинок легких */
+    @keyframes lungsImageChange {
+      0%, 100% {
+        opacity: 1; /* Первое изображение становится видимым */
+      }
+      50% {
+        opacity: 0; /* Первое изображение исчезает */
+      }
+    }
+
+    /* Анимация появления блока с легкими */
+    @keyframes lungsBlockAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Описание для легких */
+    .lungs-description {
+      text-align: center;
+      color: #333;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+      margin-top: 20px; /* Добавлен отступ сверху */
+      opacity: 0;
+      animation: descriptionFadeIn 2s ease-in-out 17s forwards;
+      margin-top: 420px;
+      font-size: 16px;
+    }
+
+    /* Анимация появления описания */
+    @keyframes descriptionFadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Интерфероны */
+    .interferon-block {
+      position: absolute;
+      bottom: 150px; /* Поднято на 250 пикселей выше */
+      right: 0%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: interferonBlockAnimation 3s ease-in-out 15s forwards;
+    }
+
+    .interferon-block img {
+      width: 500px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .interferon-text {
+      font-size: 16px;
+      color: #333;
+      text-align: center;
+      opacity: 0;
+      animation: interferonTextAnimation 3s ease-in-out 18s forwards;
+      max-width: 350px;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+      line-height: 1.5;
+    }
+
+    /* Анимация молекулы (входит в центр рецептора и исчезает) */
+    @keyframes moveMolecule {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(350px); /* Молекула входит в центр рецептора */
+        opacity: 1;
+      }
+      75% {
+        transform: translateY(300px); /* Молекула внутри рецептора */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(750px); /* Молекула движется ещё ниже */
+        opacity: 0; /* Молекула исчезает позже */
+      }
+    }
+
+    /* Начальная анимация рецептора */
+    @keyframes receptorInitial {
+      0% {
+        transform: translateY(0);
+        filter: none;
+      }
+      70% {
+        transform: translateY(100px); /* Рецептор слегка смещается вниз */
+        filter: none; /* Цвет остаётся изначальным */
+      }
+      85% {
+        transform: translateY(150px); /* Держится на месте */
+        filter: hue-rotate(90deg); /* Изменение цвета спустя 4 секунды */
+      }
+      100% {
+        transform: translateY(-250px); /* Рецептор поднимается выше */
+        filter: hue-rotate(90deg); /* Цвет остаётся изменённым */
+      }
+    }
+
+    /* Анимация движения вниз и исчезновения рецептора */
+    @keyframes receptorMoveDown {
+      0% {
+        transform: translateY(-250px);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-50px); /* Центр мембраны, поднят на 350px */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0); /* Под мембраной, поднят на 350px */
+        opacity: 0; /* Исчезает */
+      }
+    }
+
+    /* Анимация мембраны (появление снизу и движение вверх) */
+     @keyframes membraneAnimation {
+      0% {
+        transform: translateY(20px); /* Начинаем с небольшой смещённости вниз */
+        opacity: 0; /* Мембрана скрыта в начале */
+      }
+      50% {
+        transform: translateY(0); /* Мембрана поднимается вверх */
+        opacity: 1; /* Мембрана становится видимой */
+      }
+      75% {
+        transform: translateY(-330px); /* Мембрана поднимется вверх */
+        opacity: 1; /* Мембрана остаётся видимой */
+      }
+      100% {
+        transform: translateY(-390px); /* Мембрана поднимется ещё на 30px */
+        opacity: 1; /* Мембрана остаётся видимой */
+      }
+    }
+
+     /* Плавное появление рецептора */
+    @keyframes receptorFadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    /* Анимация изменения цвета мембраны */
+    @keyframes membraneColorChange {
+      0% {
+        filter: none;
+      }
+      100% {
+        filter: hue-rotate(180deg); /* Изменение цвета мембраны */
+      }
+    }
+
+    /* Анимация плавного подъёма мембраны вверх */
+    @keyframes membraneMoveUp {
+      0% {
+        transform: translateY(-390px);
+      }
+      100% {
+        transform: translateY(-750px); /* Поднимется до верхней границы блока */
+        margin-top: 20px; /* Отступ сверху */
+      }
+    }
+
+    /* Медленные и мягкие припрыжки мембраны */
+    @keyframes membraneBounce {
+      0% {
+        transform: translateY(-750px); /* Начинаем в верхней позиции */
+      }
+      50% {
+        transform: translateY(-757px); /* Легкий, быстрый прыжок */
+      }
+      100% {
+        transform: translateY(-750px); /* Возвращение на место */
+      }
+    }
+
+    /* Анимация появления блока с интерферонами */
+    @keyframes interferonBlockAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Анимация появления текста интерферонов */
+    @keyframes interferonTextAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .lungs-container {
+        width: 100% !important;
+        bottom: 190px;
+      }
+      .lungs-container img {
+        max-width: 300px;
+      }
+      .lungs-description {
+        margin-top: 270px;
+        max-width: 270px;
+        align-self: center;
+      }
+      .interferon-block {
+        width: 100%;
+        bottom: -320px;
+        padding-bottom: 30px;
+      }
+      .interferon-text {
+        max-width: 270px;
+      }
+      .interferon-block img {
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="animation-container">
+    <div class="molecule"></div>
+    <div class="receptor"></div>
+    <div class="membrane"></div>
+
+    <!-- Новый родительский блок для легких и их описания -->
+    <div class="lungs-container">
+      <div class="lungs-block">
+        <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_treat_main.png" alt="lungs with cytokines">
+        <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/lungs_clean_main.png" alt="lungs without cytokines">
+      </div>
+
+      <!-- Описание для легких -->
+      <div class="lungs-description">
+        Suppresses the hypersecretion of pro-inflammatory cytokines (such as IL-1, IL-6, and TNF-α), thereby reducing intoxication and controlling hyperinflammation with signs of cytokine storm and associated acute respiratory distress syndrome (ARDS).
+        <br><br>
+        Prevents lung damage, averting pneumonia.
+      </div>
+    </div>
+
+    <!-- Интерфероны -->
+    <div class="interferon-block">
+      <img src="https://pandadevelopmentcompany.github.io/arvidal_assets/interferons_init.svg" alt="interferons">
+      <div class="interferon-text">
+        Stimulates the production of endogenous interferons at the early stages of infection.
+        <br><br>
+        Regulation of the phagocytic component activity of innate immunity (macrophages and neutrophils), along with the activity of lymphocytes – natural killers.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function restartAnimation() {
+      const molecule = document.querySelector('.molecule');
+      const receptor = document.querySelector('.receptor');
+      const membrane = document.querySelector('.membrane');
+      const lungsContainer = document.querySelector('.lungs-container');
+      const interferonBlock = document.querySelector('.interferon-block');
+
+      // Удаляем и перезапускаем классы анимации для всех элементов
+      molecule.style.animation = 'none';
+      receptor.style.animation = 'none';
+      membrane.style.animation = 'none';
+      lungsContainer.style.animation = 'none';
+      interferonBlock.style.animation = 'none';
+
+      // Пауза, чтобы все анимации остановились
+      setTimeout(function () {
+        molecule.style.animation = '';
+        receptor.style.animation = '';
+        membrane.style.animation = '';
+        lungsContainer.style.animation = '';
+        interferonBlock.style.animation = '';
+      }, 50); // Пауза очень короткая для восстановления анимаций
+
+    }
+
+    // Запуск перезапуска анимации через 25 секунд
+    setInterval(restartAnimation, 30000);
+  </script>
+
+</body>
+</html>
