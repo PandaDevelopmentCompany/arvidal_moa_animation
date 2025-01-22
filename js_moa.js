@@ -1,4 +1,4 @@
- document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
       const animBlock = document.querySelector('.scroll-animation-block');
       const molecule = document.querySelector('.scroll-molecule');
       const membrane = document.querySelector('.scroll-membrane');

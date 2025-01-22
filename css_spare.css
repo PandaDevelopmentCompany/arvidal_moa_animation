@@ -1,0 +1,1985 @@
+/* адаптация главного заголовка под мобильные устройства */
+.main_h_header {
+	font-size: calc( (100vw - 320px)/(1440 - 320) * (77 - 28) + 28px) !important;
+		line-height: calc( (100vw - 320px)/(1440 - 320) * (90 - 50) + 50px) !important;
+}
+
+@media screen and (max-width: 768px) {
+#slider-8-slide-8-layer-1 {
+	display: flex !important;
+	white-space: normal !important;
+	max-width: calc( (100vw - 320px)/(1440 - 320) * (705 - 300) + 300px) !important;
+}
+	#slider-8-slide-8-layer-1 br {
+		display: none !important;
+	}
+}
+/* картинки */
+.image_frame.post-photo-wrapper.scale-with-grid.images_only{
+	width: 200px !important;
+}
+
+/* для future box */
+.feature_box .feature_box_wrapper .photo_wrapper {
+    width: 30%;
+}
+.feature_box .feature_box_wrapper .desc_wrapper {
+    width: 70%;
+}
+
+/* текст во flatbox */
+.flat_box .desc_wrapper{
+	    margin-left: 0px !important;
+}
+/* -лампочка */
+.icon.themebg{
+	display:none;
+}
+
+.flat_box .photo_wrapper img.photo{
+	margin-left: -15px;
+	border-radius: 5px;
+}
+/* анимация якорей */
+*{
+	 scroll-behavior: smooth;
+}
+/* Адаптация картинок в flat box */
+@media screen and (max-width: 768px) {
+	.feature_box .feature_box_wrapper .photo_wrapper {
+			width: 100%;
+	}
+	.feature_box .feature_box_wrapper .desc_wrapper 	{
+			width: 100%;
+	}
+}
+
+/* картанки в записях на ноуте */
+
+@media screen and (min-width: 768px) {
+	.mcb-section .mcb-wrap .mcb-item-061e22068 .blog_wrapper .post-item .image_frame{
+		width: 200px;
+	}
+/* 	текст */
+	.post-desc-wrapper{
+		width:75%;
+	}
+}
+/* Блок записей адаптация под моблильные устройства */
+@media screen and (max-width: 768px) {
+		.mcb-section .mcb-wrap .mcb-item-061e22068 .blog_wrapper .post-item .image_frame{
+		width: 100px;
+	}
+}
+
+/* Отступы на мобилках */
+@media screen and (max-width: 425px) {
+/* 	картинки */
+	.column_feature_box .mcb-item-feature_box-inner{
+		padding: 0px;
+	}
+/* 	контакты */
+	.style-simple .column_contact_box .mcb-item-contact_box-inner, .style-simple .column_column .get_in_touch{
+		padding:25px 0;
+	}
+}
+
+
+/* Share на подвалах записей. Изменение цвета иконок до момента наведения */
+div.share-simple-wrapper div.icons a i {
+	color: #ccc !important;
+}
+div.share-simple-wrapper div.icons a i:hover {
+	color: #75bfcb !important;
+}
+
+/* логотип, вектор, текст */
+a#logo {
+	color: #41bfc4 !important;
+	font-size: 26px !important;
+
+}
+
+a#logo:first-letter {
+/* 	color: #1e84c3 !important; */
+	font-size: 30px !important;
+}
+a#logo:after {
+	content: '®';
+	font-size: 14px !important;
+	vertical-align: super !important;
+}
+
+
+/* стили для навбара */
+@media screen and (min-width: 1240px) {
+	div#Top_bar {
+	}
+	div#Top_bar div.logo a {
+		padding: 0px !important;
+	}
+	div#Top_bar nav#menu ul#menu-main-menu li a {
+		padding: 0px !important;
+	}
+/* 	при скроллинге */
+	div#Top_bar.is-sticky div.logo a {
+		padding: 15px 0 15px 0 !important;
+	}
+	div#Top_bar.is-sticky nav#menu ul#menu-main-menu li a {
+		color: #1e84c3 !important;
+	}
+/* 	сохранение стилей для submenu */
+ ul.sub-menu li a {
+	}
+/* сохранение стилей для sub-menu */
+		div#Top_bar nav#menu ul#menu-main-menu ul.sub-menu li a {
+			padding: 15px !important;
+	}
+}
+/* navbar на мобилках background до малых лэптопов*/
+@media screen and (max-width: 1000px) {
+	div#Top_bar.is-sticky {
+		background-color: rgba(0, 0, 0, 0.8) !important;
+	}
+	.responsive-menu-toggle {
+		background: none !important;
+	}
+}
+/* bckground for navbar при этом в настройках theme option долежн быть указан trnsparent navbar*/
+div#Top_bar {
+	background-color: rgba(0, 0, 0, 0.2) !important;
+}
+div#Top_bar.is-sticky {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+
+/* на мобилках и планшетах background navbar */
+@media screen and (max-width: 767px) {
+div#Top_bar div.top_bar_left.clearfix {
+		background-color: rgba(0, 0, 0, 0.4) !important;
+	}
+	div#Top_bar.is-sticky div.top_bar_left.clearfix {
+		background-color: rgba(0, 0, 0, 0.2) !important;
+	}
+}
+
+
+
+/* Прозрачность навабара на второстепенных страницах с background color body white */
+.page-id-780 div#Top_bar {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.page-id-780 div#Top_bar.is-sticky {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+/* тоже самое для trial design */
+.page-id-782 div#Top_bar {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.page-id-782 div#Top_bar.is-sticky {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+/* тоже самое для clinical data */
+.page-id-784 div#Top_bar {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.page-id-784 div#Top_bar.is-sticky {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+/* тоже самое для safety */
+.page-id-777 div#Top_bar {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.page-id-777 div#Top_bar.is-sticky {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+/* тоже самое для offers_for_investor_new_animation */
+.page-id-1034 div#Top_bar {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.page-id-1034 div#Top_bar.is-sticky {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+/* тоже самое для intellectual property */
+.page-id-239 div#Top_bar {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.page-id-239 div#Top_bar.is-sticky {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+/* тоже самое для записей */
+.single-post div#Top_bar {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.single-post div#Top_bar.is-sticky {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+/* тоже самое для home-2 */
+.page-id-1572 div#Top_bar {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.page-id-1572 div#Top_bar.is-sticky {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+/* тоже самое для главной */
+.page-id-2 div#Top_bar {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.page-id-2 div#Top_bar.is-sticky {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* навбар от 768 до 1240 на второстепенных страницах отобьражался некорректно, решение */
+@media screen and (min-width: 768px) and (max-width: 1240px) {
+.page-id-780	#Header_wrapper {
+		height: 90px !important;
+	}
+/* 	тоже самое для страницы trial design */
+	.page-id-782	#Header_wrapper {
+		height: 90px !important;
+	}
+	/* 	тоже самое для страницы clinical data */
+	.page-id-784	#Header_wrapper {
+		height: 90px !important;
+	}
+		/* 	тоже самое для страницы safety */
+	.page-id-777	#Header_wrapper {
+		height: 90px !important;
+	}
+			/* 	тоже самое для страницы intellectual property */
+	.page-id-239	#Header_wrapper {
+		height: 90px !important;
+	}
+			/* 	тоже самое для записей */
+	.single-post	#Header_wrapper {
+		height: 90px !important;
+	}
+			/* 	тоже самое для страницы home-2 */
+	.page-id-1572	#Header_wrapper {
+		height: 90px !important;
+	}
+		/* 	тоже самое для страницы home 1 */
+	.page-id-2	#Header_wrapper {
+		height: 90px !important;
+	}
+}
+/* navbar 996 до 1240 background гамбургера на всех страницах скрыть */
+@media screen and (min-width: 996px) and (max-width: 1240px) {
+	.responsive-menu-toggle {
+		background: none !important;
+	}
+}
+
+
+/* сайдбар с нвовостями */
+.mfn-off-canvas-content {
+/* 	background-color: rgba(65, 191, 196, 0.5) !important; */
+		background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.Recent_posts.blog_news h6 {
+	border-color: #ffffff !important; 
+}
+@media screen and (max-width: 500px) {
+	.mfn-off-canvas-sidebar {
+		width: 280px !important;
+	}
+	.mfn-off-canvas-content-wrapper {
+		width: 280px !important;
+	}
+	.mfn-off-canvas-sidebar {
+		left: -280px !important;
+	}
+	.mfn-ofcs-opened .mfn-off-canvas-sidebar {
+		left: 0 !important;
+	}
+}
+
+
+
+/* сохранение отступов body при добавлении класса js mfn-ofcs-opened при выдвижении сайдбара */
+.js.mfn-ofcs-opened {
+	padding-right: 0px !important;
+}
+
+
+
+/* remove line bottom fancy heading on home */
+.home .fancy_heading_line
+{
+	background-image: none !important;
+}
+
+
+
+/*ЗАПИСИ убрать дублирование заголовка и добавить отступы  */
+#Subheader{
+	margin: 60px auto;	
+}
+.section-post-header{
+	display: none;
+}
+
+
+
+/* меню в записях без прокрутки */
+.post-template-default #Top_bar{
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Свитчер от сайдбара с записями */
+.mfn-off-canvas-switcher {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.mfn-off-canvas-sidebar i {
+	color: #ffffff !important;
+}
+
+
+
+/* Убрать лыишние стили с класса .mfn-off-canvas-switcher в навбаре с recent news, ей назначен этот класс для активации сайдбара */
+#Top_bar .mfn-off-canvas-switcher {
+	background-color: rgba(0, 0, 0, 0.0) !important;
+}
+nav#menu .mfn-off-canvas-switcher {
+	background-color: rgba(0, 0, 0, 0.0) !important;
+}
+
+
+
+/* hr для второго адреса в футоре */
+.style-simple .get_in_touch ul li.phone.phone-1{
+    color: #FFFFFF;
+    border-bottom: 1px solid var(--mfn-contactbox-line);
+}
+
+/* иконки в футере */
+
+@media only screen and (min-width: 768px) and (max-width: 959px)
+{
+.get_in_touch ul li .icon {
+    display: block;
+	}
+	.style-simple .get_in_touch ul li .icon {
+    left: -40px;
+	}	
+}
+.get_in_touch ul li .icon{
+ 	margin: auto;
+  position: absolute;
+  top: 0; bottom: 0; 
+}
+
+/* шрифт для виджета контактов в футере */
+.mcb-item-contact_box-inner{
+	font-size: 14px;
+}
+
+
+
+
+/* Картинки в шахматном порядке в областях применения */
+@media screen and (min-width: 700px) {
+ .column_feature_box:nth-child(2n) .feature_box_wrapper
+{
+	display: flex !important;
+	flex-direction: row-reverse;
+	flex-wrap: wrap;
+}
+	/* отступы между картинкой и текстом */
+	.column_feature_box:nth-child(2n) .desc_wrapper{
+		padding-left: 0px;
+		padding-right: 4%;
+	}
+}
+
+
+
+/* отступы между картинкой и текстом после переноса */
+@media screen and (max-width: 768px)
+{
+.feature_box .feature_box_wrapper .desc_wrapper {
+    padding: 20px 0 0 0;
+	}
+}
+
+
+
+
+/* id about-Taphalgin адекватная работа якоря */
+#about-Taphalgin {
+	position: absolute !important;
+	top: -60px !important;
+}
+
+#about-Taphalgin-therapeutical-areas, #about-Taphalgin-MOA, #about-Taphalgin-dosing{
+	position: relative !important;
+	top: -60px !important;
+	height: 0px;
+}
+
+
+
+
+
+
+/* Скрыть p, которые добавляет muffin group как обертку для блоков при добавлении html. Скрыть в header для сторонних страниц */
+#header_for_other_page p {
+	display: none !important;
+}
+/* лишний отступ перед контетом на второстепенных страницах */
+div#Content {
+	padding-top: 0px !important;
+}
+
+
+
+
+
+/* header левый и правый padding на мобилках на второстепенных страницах */
+@media screen and (max-width: 767px) {
+.section_wrapper.mcb-section-inner.mcb-section-inner-bbd48f27d {
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+}
+/* 	тоже самое для trial design */
+	.section_wrapper.mcb-section-inner.mcb-section-inner-1cdf2b82f {
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+}
+	/* 	тоже самое для clinical data */
+	.section_wrapper.mcb-section-inner.mcb-section-inner-ebdc64330 {
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+}
+		/* 	тоже самое для safety */
+	.section_wrapper.mcb-section-inner.mcb-section-inner-ee1c71ecb {
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+}
+		/* 	тоже самое для intellectual property */
+	.section_wrapper.mcb-section-inner.mcb-section-inner-eea1c7911 {
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+}
+		/* 	тоже самое для home-2 */
+.section_wrapper.mcb-section-inner.mcb-section-inner-e2668e0ea {
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+}
+		/* 	тоже самое для home main */
+.section_wrapper.mcb-section-inner.mcb-section-inner-f20e755c1 {
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+}
+}
+
+
+
+
+
+
+
+/* Убрать лишние обертки p */
+#beauty_block p {
+	display: none !important;
+}
+.remove_p_header p:nth-child(1) {
+	display: none !important;
+}
+
+/* Ширина иконок на планшете (не обрезать) */
+@media only screen and (min-width: 670px) and (max-width: 959px){
+	.tablet-one-fifth.column {
+    width: 30%;
+	}
+}
+@media only screen and (min-width: 970px) and (max-width: 1238px){
+	.one-fifth.column {
+    width: 25%;
+	}
+}
+
+
+
+/* Скорость анимации блока possible areas */
+.main_animation_1,.main_animation_2,.main_animation_3,.main_animation_4,.main_animation_5 {
+	animation-duration: 1s !important;
+}
+/* Отключение анимации на малых экранах */
+@media screen and (max-width: 768px) {
+.main_animation_1,.main_animation_2,.main_animation_3,.main_animation_4,.main_animation_5 {
+	-o-transition-property: none !important;
+		-moz-transition-property: none !important;
+		-ms-transition-property: none !important;
+		-webkit-transition-property: none !important;
+		transition-property: none !important;
+		/*CSS transforms*/
+		-o-transform: none !important;
+		-moz-transform: none !important;
+		-ms-transform: none !important;
+		-webkit-transform: none !important;
+		transform: none !important;
+		/*CSS animations*/
+		-webkit-animation: none !important;
+		-moz-animation: none !important;
+		-o-animation: none !important;
+		-ms-animation: none !important;
+		animation: none !important;
+	}
+}
+/* Цвет ссылки в пульсирующем блоке для почты*/
+.a_in_pulsating:hover{
+	color: #ffffff;
+
+}
+.a_in_pulsating{
+	color: #41dfc4;
+	font-size: 21px !important;
+	text-decoration: none !important;
+	transition: 0.7s !important;
+}
+.a_in_pulsating:hover {
+	color: #1e84c3 !important;
+}
+
+/* Футер для планшета на полный экран в ширину */
+@media only screen and (max-width: 767px){
+	.mfn-footer-tmpl .mcb-section:not(.full-width) {
+    max-width: 767px;
+	}
+}
+
+
+
+
+
+
+
+
+
+/* Пульсирующие блоки анимация */
+
+    .callback-bt {
+            color:#fff !important;
+            background: #1e84c3;
+            border-radius: 5px;
+            box-shadow:0 8px 10px rgba(255,255,255,0.8);
+            cursor: default;
+            height:auto;
+            text-align:center;
+            width:100%;
+            z-index:999;
+            transition:.3s;
+            -webkit-animation:hoverWave linear 1s infinite;
+            animation:hoverWave linear 1s infinite;
+            padding: 15px 15px 20px 15px;
+    }
+
+    .callback-bt .text-call{
+            height:auto;
+            width:100%;
+            border-radius:5px;
+            color:#fff !important;
+
+    }
+
+    .callback-bt .text-call span {
+        text-align: center;
+        color:#fff !important;
+        font-size: 12px;
+        line-height: 12px;
+        transition: opacity .3s linear;
+        font-family: 'Futura', sans-serif;
+    opacity: 1;
+
+    }
+
+    .callback-bt .text-call:hover span {
+        opacity: 1;
+        color: #fff;
+            font-size: 11px;
+    }
+
+    .callback-bt:hover {
+            z-index:1;
+            background: #41bfc4;
+            color:transparent;
+            transition:.3s;
+    }
+
+    @-webkit-keyframes hoverWave {
+            0% {
+            box-shadow:0 8px 10px rgba(255,255,255,0.3),0 0 0 0 rgba(255,255,255,0.2),0 0 0 0 rgba(255,255,255,0.2)
+    }
+    40% {
+            box-shadow:0 8px 10px rgba(255,255,255,0.3),0 0 0 15px rgba(255,255,255,0.2),0 0 0 0 rgba(255,255,255,0.2)
+    }
+    80% {
+            box-shadow:0 8px 10px rgba(255,255,255,0.3),0 0 0 30px rgba(255,255,255,0),0 0 0 26.7px rgba(255,255,255,0.067)
+    }
+    100% {
+            box-shadow:0 8px 10px rgba(255,255,255,0.3),0 0 0 30px rgba(255,255,255,0),0 0 0 40px rgba(255,255,255,0.0)
+    }
+    }@keyframes hoverWave {
+            0% {
+            box-shadow:0 8px 10px rgba(30, 132, 195, 0.3),0 0 0 0 rgba(30, 132, 195, 0.2),0 0 0 0 rgba(30, 132, 195, 0.2)
+    }
+    40% {
+            box-shadow:0 8px 10px rgba(30, 132, 195, 0.3),0 0 0 15px rgba(30, 132, 195, 0.2),0 0 0 0 rgba(30, 132, 195, 0.2)
+    }
+    80% {
+            box-shadow:0 8px 10px rgba(30, 132, 195, 0.3),0 0 0 30px rgba(30, 132, 195, 0),0 0 0 26.7px rgba(30, 132, 195, 0.067)
+    }
+    100% {
+            box-shadow:0 8px 10px rgba(30, 132, 195, 0.3),0 0 0 30px rgba(30, 132, 195, 0),0 0 0 40px rgba(30, 132, 195, 0.0)
+    }
+    }
+    /* animations icon */
+    @keyframes shake {
+    0% {
+        transform: rotateZ(0deg);
+            -ms-transform: rotateZ(0deg);
+            -webkit-transform: rotateZ(0deg);
+    }
+    10% {
+        transform: rotateZ(-30deg);
+            -ms-transform: rotateZ(-30deg);
+            -webkit-transform: rotateZ(-30deg);
+    }
+    20% {
+        transform: rotateZ(15deg);
+            -ms-transform: rotateZ(15deg);
+            -webkit-transform: rotateZ(15deg);
+    }
+    30% {
+        transform: rotateZ(-10deg);
+            -ms-transform: rotateZ(-10deg);
+            -webkit-transform: rotateZ(-10deg);
+    }
+    40% {
+        transform: rotateZ(7.5deg);
+            -ms-transform: rotateZ(7.5deg);
+            -webkit-transform: rotateZ(7.5deg);
+    }
+    50% {
+        transform: rotateZ(-6deg);
+            -ms-transform: rotateZ(-6deg);
+            -webkit-transform: rotateZ(-6deg);
+    }
+    60% {
+        transform: rotateZ(5deg);
+            -ms-transform: rotateZ(5deg);
+            -webkit-transform: rotateZ(5deg);
+    }
+    70% {
+        transform: rotateZ(-4.28571deg);
+            -ms-transform: rotateZ(-4.28571deg);
+            -webkit-transform: rotateZ(-4.28571deg);
+    }
+    80% {
+        transform: rotateZ(3.75deg);
+            -ms-transform: rotateZ(3.75deg);
+            -webkit-transform: rotateZ(3.75deg);
+    }
+    90% {
+        transform: rotateZ(-3.33333deg);
+            -ms-transform: rotateZ(-3.33333deg);
+            -webkit-transform: rotateZ(-3.33333deg);
+    }
+    100% {
+        transform: rotateZ(0deg);
+            -ms-transform: rotateZ(0deg);
+            -webkit-transform: rotateZ(0deg);
+    }
+    }
+
+    @-webkit-keyframes shake {
+    0% {
+        transform: rotateZ(0deg);
+            -ms-transform: rotateZ(0deg);
+            -webkit-transform: rotateZ(0deg);
+    }
+    10% {
+        transform: rotateZ(-30deg);
+            -ms-transform: rotateZ(-30deg);
+            -webkit-transform: rotateZ(-30deg);
+    }
+    20% {
+        transform: rotateZ(15deg);
+            -ms-transform: rotateZ(15deg);
+            -webkit-transform: rotateZ(15deg);
+    }
+    30% {
+        transform: rotateZ(-10deg);
+            -ms-transform: rotateZ(-10deg);
+            -webkit-transform: rotateZ(-10deg);
+    }
+    40% {
+        transform: rotateZ(7.5deg);
+            -ms-transform: rotateZ(7.5deg);
+            -webkit-transform: rotateZ(7.5deg);
+    }
+    50% {
+        transform: rotateZ(-6deg);
+            -ms-transform: rotateZ(-6deg);
+            -webkit-transform: rotateZ(-6deg);
+    }
+    60% {
+        transform: rotateZ(5deg);
+            -ms-transform: rotateZ(5deg);
+            -webkit-transform: rotateZ(5deg);
+    }
+    70% {
+        transform: rotateZ(-4.28571deg);
+            -ms-transform: rotateZ(-4.28571deg);
+            -webkit-transform: rotateZ(-4.28571deg);
+    }
+    80% {
+        transform: rotateZ(3.75deg);
+            -ms-transform: rotateZ(3.75deg);
+            -webkit-transform: rotateZ(3.75deg);
+    }
+    90% {
+        transform: rotateZ(-3.33333deg);
+            -ms-transform: rotateZ(-3.33333deg);
+            -webkit-transform: rotateZ(-3.33333deg);
+    }
+    100% {
+        transform: rotateZ(0deg);
+            -ms-transform: rotateZ(0deg);
+            -webkit-transform: rotateZ(0deg);
+    }
+    }
+
+
+
+
+
+
+
+
+/* Анимация автозаполнение бордера + интерактивность при навдеении */
+
+.cards_new_animation:hover .card2_new_animation {
+      animation-direction: gradient alternate-reverse;
+    }
+    .card2_new_animation {
+    	background: linear-gradient(-45deg, #1e84c3, #41bfc4, #f3f3f3, #fff);
+    	background-size: 400% 400%;
+    	animation: gradient 4s ease-in-out infinite;
+    	height: 100%;
+      border-radius: 20px;
+    }
+
+    @keyframes gradient {
+    	0% {
+    		background-position: 0% 50%;
+    	}
+    	50% {
+    		background-position: 100% 50%;
+    	}
+    	100% {
+    		background-position: 0% 50%;
+    	}
+    }
+
+  .cards_new_animation .card {
+  	background-color: #fff;
+  	border-radius: 10px;
+  	display: flex;
+  	flex-direction: column;
+  	position: relative;
+    width: 100%;
+  	box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    /* , 0 16px 20px rgba(0,0,0,0.2) */
+  	opacity: 1;
+  }
+  @media screen and (max-width: 767px) {
+  	.cards_new_animation .card {
+  		width: calc(100% - 0px);
+  	}
+  }
+  @media screen and (max-width: 520px) {
+  	.cards_new_animation .card {
+  		width: calc(100% - 0px);
+  	}
+  }
+
+  .cards_new_animation .card .card-content_new_animation {
+  	background-color: #fff;
+  	border-radius: inherit;
+  	display: flex;
+  	flex-direction: column;
+  	justify-content: space-between;
+  	text-align: center;
+  	padding: 30px 16px 30px;
+  	z-index: 2;
+  	height: 100%;
+  	line-height: 1.6;
+  	margin: 2px;
+  }
+  .cards_new_animation .card .card-text,
+  .cards_new_animation .card .card-text {
+  	font-size: 21px;
+  	font-family: 'Futura', sans-serif;
+  	color: #1e84c3;
+  	margin: 0;
+  }
+  .cards_new_animation .card .card-text p:not(:last-child) {
+  	margin-bottom: 10px;
+  }
+
+.cards_new_animation:hover .card:after {
+  opacity: 1;
+}
+.cards_new_animation .card {
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  /* , 0 16px 20px rgba(0,0,0,0.2) */
+  opacity: 1;
+}
+@media screen and (max-width: 767px) {
+  .cards_new_animation .card {
+    width: calc(100% - 0px);
+  }
+}
+@media screen and (max-width: 520px) {
+  .cards_new_animation .card {
+    width: calc(100% - 0px);
+  }
+}
+.cards_new_animation .card:hover:before {
+  opacity: 1;
+  /* было 1 */
+}
+.cards_new_animation .card:before,
+.cards_new_animation .card:after {
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+.cards_new_animation .card:before {
+  background: radial-gradient( 550px circle at var(--mouse-x) var(--mouse-y), var(--cards_new_animationBorderColor), transparent 50% );
+  z-index: 1;
+}
+.cards_new_animation .card:after {
+  background: radial-gradient( 550px circle at var(--mouse-x) var(--mouse-y), var(--cards_new_animationBorderColor), transparent 50% );
+  z-index: 1;
+}
+.cards_new_animation .card .card-content_new_animation {
+  background-color: #fff;
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  padding: 30px 16px 30px;
+  z-index: 2;
+  height: 100%;
+  line-height: 1.6;
+  margin: 2px;
+}
+.cards_new_animation .card .card-text,
+.cards_new_animation .card .card-text {
+  font-size: 21px;
+  font-family: 'Futura', sans-serif;
+  color: #1e84c3;
+  margin: 0;
+}
+.cards_new_animation .card .card-text p:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+
+
+/* Интерактивная аанимация из активных бордеров */
+      .cards {
+  }
+  .cards:hover .card:after {
+  	opacity: 1;
+  }
+  .cards .card {
+  	background-color: #fff;
+  	border-radius: 10px;
+  	display: flex;
+  	flex-direction: column;
+  	position: relative;
+    width: 100%;
+box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  	opacity: 1;
+  }
+  @media screen and (max-width: 767px) {
+  	.cards .card {
+  		width: calc(100% - 0px);
+  	}
+  }
+  @media screen and (max-width: 520px) {
+  	.cards .card {
+  		width: calc(100% - 0px);
+  	}
+  }
+  .cards .card:hover:before {
+  	opacity: 1;
+    /* было 1 */
+  }
+  .cards .card:before,
+  .cards .card:after {
+  	border-radius: inherit;
+  	content: "";
+  	height: 100%;
+  	left: 0px;
+  	opacity: 0;
+  	position: absolute;
+  	top: 0px;
+  	transition: opacity 500ms;
+  	width: 100%;
+  }
+  .cards .card:before {
+  	background: radial-gradient( 550px circle at var(--mouse-x) var(--mouse-y), var(--CardsBorderColor), transparent 50% );
+  	z-index: 1;
+  }
+  .cards .card:after {
+  	background: radial-gradient( 550px circle at var(--mouse-x) var(--mouse-y), var(--CardsBorderColor), transparent 50% );
+  	z-index: 1;
+  }
+  .cards .card .card-content {
+  	background-color: #fff;
+  	border-radius: inherit;
+  	display: flex;
+  	flex-direction: column;
+  	justify-content: space-between;
+  	text-align: center;
+  	padding: 50px 16px 50px;
+  	z-index: 2;
+  	height: 100%;
+  	line-height: 1.6;
+  	margin: 2px;
+  }
+  .cards .card .card-text,
+  .cards .card .card-text {
+  	font-size: 21px;
+  	font-family: 'FuturaBookC', sans-serif;
+  	color: #1e84c3;
+  	margin: 0;
+  }
+  .cards .card .card-text p:not(:last-child) {
+  	margin-bottom: 10px;
+  }	
+
+
+
+/* Удаление лишних оберток p для анимации */
+.remove_p_animation p {
+	display: none !important;
+}
+/* Переменные для анимации с активными бордерами */
+:root {
+      --CardsBorderColor: #1e84c3, #41dfc4, #fefefe; /*цвет обводки карточки*/
+      --CardsBorderOpacity: 0.3; /*цвет обводки карточки*/
+      --CardsOpacity:1; /*цвет подсвечивания карточки, чем меньше прозрачность, тем более заметно*/
+      --CardsBorderRadius: 20px; /*радиус скругления углов*/
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+/* разделитель другого цвета у fancy header*/
+.fancy_heading_line {
+    background-image: url(https://test.arvidal.info/wp-content/uploads/2023/08/Vector-4.png);
+}
+
+/* Картинка в тексте, адаптация */
+@media screen and (max-width: 767px){
+	img.img_in_txt {
+		width: 100%;
+	}
+}
+/* цвет заголовкой записей на странице новости */
+.mfn-footer a:not(.button):not(.icon_bar)
+{
+	color: #ffffff;
+}
+.testimonials_slider_ul li .author span a, .Latest_news ul li .desc_footer, .share-simple-wrapper .icons a {
+    color: #ccc;
+}
+.offer_thumb .slider_pagination, .offer_thumb .slider_pagination a, .Latest_news ul li .desc_footer, .Latest_news ul li .photo, .offer_thumb.bottom .slider_pagination a, .style-simple .faq .question, .style-simple #Filters .filters_wrapper ul, #edd_checkout_cart th, #edd_checkout_cart td {
+    border-color:#fff;
+}
+
+
+
+/* Исправление бага навбара при обновлении в районе скролинга и постановки его на 60px ниже положенного */
+body:not(.mfn-header-scrolled) #Top_bar {
+	top: 0 !important;
+}
+
+.nocomments{
+	display:none;
+}
+
+/* Удалить лишний padding на страницае intellectual property на всплывающих окнах документов */
+.ays-pb-modal {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
+
+
+
+/* стили для картинок-документов intellectual property */
+
+.img_for_popup {
+	width: 100%;
+	max-height: auto !important;
+}
+@media screen and (max-width: 768px) {
+	.img_for_popup {
+		width: 100% !important;
+		height: auto !important;
+	}
+}
+	@media screen and (min-width: 768px) {
+		.img_for_popup {
+			max-width: 60% !important;
+			height: auto !important;
+		}
+	}
+.ays-pb-modal {
+	width: 60% !important;
+}
+
+
+
+
+
+
+/* Скрыть лишние обертки p */
+.remove_p {
+	display: none !important;
+}
+
+
+/* Стили круговых диаграмм */
+.pie {
+  --pie-color-1: #600f38; /* цвет сектора */
+  --pie-color-2: #f8951c;
+  --pie-color-3:  #1283c6;
+	padding-bottom: 20px;
+  display: grid;
+	align-items: center;
+/*   grid-template-columns: 8em 8em;*/
+ grid-template-columns: 8em 8em; 
+	/* 12em — размер диаграммы, 12em — размер легенды */ 
+  gap: 0 3em; /* 3em - 2em (margin-left) = 1em — расстояние от диаграммы до легенды */
+  overflow: auto;
+}
+ .diagrams{
+    display: flex;
+	 flex-wrap: wrap;
+	 justify-content: space-evenly;
+}
+.pie div {
+	margin:5px;
+  grid-column: 2 / 3;
+  align-self: center;
+/* 	min-width: 150px; */
+}
+.pie svg {
+  grid-column: 1 / 2;
+  grid-row: 1 / 6;
+}
+.pie div::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  margin-left: -2em; /* 1.5em (width) + .5em (margin-right) = 2em */
+  margin-right: .5em;
+  vertical-align: middle;
+}
+.pie div:nth-of-type(1):before {
+  background: var(--pie-color-1);
+}
+.pie div:nth-of-type(2):before {
+  background: var(--pie-color-2);
+}
+.pie div:nth-of-type(3):before {
+  background: var(--pie-color-3);
+}
+.pie text {
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-size: 5px;
+  color: black;
+  visibility: hidden;
+}
+.pie circle {
+  fill: none;
+  stroke-width: 8;
+  cursor: pointer;
+  transition: all 0.7s; 
+}
+
+.pie div:nth-of-type(1):hover ~ svg circle:not(:nth-of-type(1)),
+.pie div:nth-of-type(2):hover ~ svg circle:not(:nth-of-type(2)),
+.pie div:nth-of-type(3):hover ~ svg circle:not(:nth-of-type(3)),
+.pie g:hover circle:not(:hover) {
+  opacity: .3;
+}
+.pie div:nth-of-type(1):hover ~ svg text:nth-of-type(1),
+.pie div:nth-of-type(2):hover ~ svg text:nth-of-type(2),
+.pie div:nth-of-type(3):hover ~ svg text:nth-of-type(3),
+.pie circle:nth-of-type(1):hover ~ text:nth-of-type(1),
+.pie circle:nth-of-type(2):hover ~ text:nth-of-type(2),
+.pie circle:nth-of-type(3):hover ~ text:nth-of-type(3)
+{
+  visibility: visible;
+  color: black;
+	/*transition: all 0.7s !important;*/
+}
+
+ .pie_1 circle:nth-of-type(1) {
+  stroke: var(--pie-color-1);
+  stroke-dasharray: 56 100;
+   }
+   .pie_1 circle:nth-of-type(2) {
+  stroke: var(--pie-color-2);
+  stroke-dasharray: 0 56 41 100;
+   }
+   .pie_1 circle:nth-of-type(3) {
+  stroke: var(--pie-color-3);
+  stroke-dasharray: 0 97 100;
+   }
+
+   .pie_2 circle:nth-of-type(1) {
+  stroke: var(--pie-color-1);
+  stroke-dasharray: 33 100;
+   }
+   .pie_2 circle:nth-of-type(2) {
+  stroke: var(--pie-color-2);
+  stroke-dasharray: 0 33 67 100;
+   }
+   .pie_2 circle:nth-of-type(3) {
+  stroke: var(--pie-color-3);
+  stroke-dasharray: 0 100 100;
+   }
+ .pie_3 circle:nth-of-type(1) {
+  stroke: var(--pie-color-1);
+  stroke-dasharray: 70 100;
+   }
+   .pie_3 circle:nth-of-type(2) {
+  stroke: var(--pie-color-2);
+  stroke-dasharray: 0 70 26 100;
+   }
+   .pie_3 circle:nth-of-type(3) {
+  stroke: var(--pie-color-3);
+  stroke-dasharray: 0 96 100;
+   }
+
+   .pie_4 circle:nth-of-type(1) {
+  stroke: var(--pie-color-1);
+  stroke-dasharray: 50 100;
+   }
+   .pie_4 circle:nth-of-type(2) {
+  stroke: var(--pie-color-2);
+  stroke-dasharray: 0 50 50 100;
+   }
+   .pie_4 circle:nth-of-type(3) {
+  stroke: var(--pie-color-3);
+  stroke-dasharray: 0 100 100;
+   }
+
+.name_of_diagrams{
+	color:black;
+}
+
+.pie svg{
+ max-width: 100% !important;
+}
+
+
+
+
+
+
+
+
+/* тот самый лишний пиксель в навбаре */
+@media screen and (min-width: 320px) and (max-width: 1024px) {
+body:not(.mfn-header-scrolled) #Top_bar {
+	border-bottom: 1px solid !important;
+}
+	}
+
+
+/* Новый header humburger */
+.icon-menu-fine:before {
+	color: #1eb4c3 !important;
+}
+
+/* стили для кнопки в меню recent news */
+#menu-item-90.mfn-off-canvas-switcher {
+	cursor: pointer;
+	background: none  !important;
+}
+#menu-item-1715.mfn-off-canvas-switcher {
+	background: none  !important;
+}
+
+#menu-item-1861.mfn-off-canvas-switcher {
+	background: none  !important;
+}
+
+#menu-item-1916.mfn-off-canvas-switcher {
+	background: none  !important;
+}
+#menu-item-1929.mfn-off-canvas-switcher {
+	background: none  !important;
+}
+#menu-item-1940.mfn-off-canvas-switcher {
+	background: none  !important;
+}
+
+
+/* new header color sub menu */
+.sub-menu.mfn-submenu li a {
+	color: #73748c !important;
+}
+
+/* second_main_menu style */
+#menu-main-menu li a {
+	font-size: 18px;
+}
+#menu-main_menu_for_other_page li a {
+	font-size: 18px;
+}
+#menu-main_menu_for_other_page_sticky li a {
+	font-size: 18px;
+}
+#menu-main_menu_for_other_mobile li a {
+	font-size: 18px;
+}
+
+
+
+
+
+/* Отключение активного бордера у блоков на главной на десктопе*/
+
+.page-id-2 .card2_new_animation {
+	animation: none !important;
+}
+
+
+/* Иконки в offers investors */
+.mfn-icon-box-left .icon-wrapper, .mfn-icon-box-right .icon-wrapper {
+    width: auto;
+}
+.one-fifth.column {
+    width: auto;
+}
+
+@media screen and (max-width: 337px) {
+	.one-fifth.column {
+    width: 100%;
+}
+}
+
+
+
+
+
+/* Убрать белую полосу над навбаром в записях */
+.single-post .section.the_content.no_content {
+	display: none !important;
+}
+
+
+
+
+/* бургер, мобилка, кнопка закрытия, крестик */
+.mfn-close-icon.mfn-header-menu-toggle span {
+	color: #41bfc4 !important;
+}
+
+
+
+/* меню, about taphalgin */
+#menu-item-1853 {
+	cursor: pointer !important;
+}
+#menu-item-94 {
+	cursor: pointer !important;
+}
+
+/* efficacy&safety */
+#menu-item-789 {
+	cursor: pointer !important;
+}
+#menu-item-1858 {
+	cursor: pointer !important;
+}
+
+/* скрыть shere в записях  */
+.share-simple-wrapper {
+	display:none;
+} 
+
+/* курсор пойнетр для ссылок (intellectual property) */
+a{
+    cursor: pointer;
+}
+
+/* заголовки на записях */
+.single-post h1.title {
+	font-style: normal !important;
+}
+.single-post #Subheader .title {
+	font-family: 'FuturaBookC', sans-serif !important;
+}
+/* .sup_heading {
+	font-size: 12px !important;
+	vertical-align: super !important;
+}
+.sup_heading_big {
+	font-size: 20px !important;
+	vertical-align: super !important;
+}
+.sup_heading_post:after {
+	content: '®';
+	font-size: 12px !important;
+	vertical-align: super !important;
+} */
+span.sup_for_all {
+	text-transform: uppercase !important;
+/* 	font-weight: bold !important; */
+}
+.sup_for_all:after {
+	content: '®';
+	font-size: 12px !important;
+	vertical-align: super !important;
+	font-weight: normal !important;
+}
+
+.home h2 span.sup_for_all:after {
+	font-size: 16px !important;
+	font-weight: bold !important;	
+}
+/* Исключения sup for all */
+.mcb-column-inner-mxrxpt8fg span.sup_for_all {
+	font-weight: bold !important;
+}
+
+
+
+
+
+
+
+.under-construction a#logo:after {
+	display: none !important;
+}
+.under-construction h2, span.big {
+	color: #1e84c3 !important;
+}
+.under-construction #Content {
+	height: 2000px !important;
+}
+
+
+/*  уменьшение размера водяного знака на бэграунде */
+.incomplete_watermark {
+	background-size: 50% !important;
+}
+.single-post .incomplete_watermark {
+	background-image: none !important;
+}
+
+
+html {
+	background-color: #fff !important;
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 783px) {
+	
+	.mfn-header-tmpl.mfn-header-main.mfn-header-tmpl-absolute.mfn-header-body-offset.mfn-hasMobile.mfn-mobile-header-tmpl-fixed.mfn-mobile-header-body-offset.mfn-hasSticky {
+		top: 0 !important;
+	}
+}
+
+
+
+
+
+/* подвал добавить заголовок к блоку новостей, но удалить лишние отступы */
+.mcb-column-inner.mcb-column-inner-7fbe7efaa.mcb-item-fancy_heading-inner {
+	margin-bottom: 0 !important;
+}
+.mcb-column-inner.mcb-column-inner-vbdw52xsmi.mcb-item-column-inner p:nth-child(1) {
+	display: none !important;
+}
+
+
+
+/* Замена иконки часов у записей на календарь */
+/* i.icon-clock:before {
+content: '????️' !important;
+} */
+/* внесено на be.caa 252str */
+
+/* Поменять маркеры у списка второго уровня */
+.other_list {
+	list-style: none !important;
+}
+.other_list:before {
+	content: '–' !important;
+	position: relative !important;
+	font-weight: bold !important;
+	left: -10px !important;
+}
+
+
+
+
+
+
+
+
+
+
+/* выравнивание блоков в плиточном дизайне */
+
+.card-content_new_animation {
+	padding-top: 30px !important;
+	padding-bottom 30px !important;
+}
+
+/* about taphalgin выравнивание блоков */
+@media screen and (min-width: 961px) and (max-width: 1240px) {
+	.page-id-2 .custom_height_about_taphalgin .card-content_new_animation {
+/* 		height: 320px !important; */
+}
+		.page-id-2 .card_custom_height .card-content_new_animation {
+		height: 250px !important;
+	}
+	}
+
+@media screen and (min-width: 768px) and (max-width: 960px) {
+	.page-id-2 .mcb-section-1c5639e0f .card-content_new_animation {
+/* 		height: 340px !important; */
+}
+		.page-id-2 .card_custom_height .card-content_new_animation {
+		height: 260px !important;
+	}
+	}
+
+
+@media screen and (min-width: 1241px)  {
+	.page-id-2 .mcb-section-1c5639e0f .card-content_new_animation {
+/* 		height: 250px !important; */
+}
+		.page-id-2 .card_custom_height .card-content_new_animation {
+		height: 200px !important;
+	}
+	}
+
+
+/* MOA выравнивание блоков */
+/* @media screen and (min-width: 1240px) {
+	.page-id-2 .mcb-item-047029e72 .card-content_new_animation {
+		height: 500px !important;
+	}
+	.page-id-2 .mcb-item-da80048af .card-content_new_animation {
+		height: 600px !important;
+	}
+	.page-id-2 .mcb-item-07533e2ad .card-content_new_animation {
+		height: 330px !important;
+	}
+} 
+@media screen and (min-width: 768px) and (max-width: 1240px) {
+		.page-id-2 .mcb-item-047029e72 {
+		width: 60% !important;
+		margin: 0 auto !important;
+	}
+		.page-id-2 .mcb-item-da80048af {
+		width: 100% !important;
+	}
+	.page-id-2 .mcb-item-07533e2ad .card-content_new_animation {
+		height: 370px !important;
+	}
+} */
+
+
+/* dosing выравнивание блоков */
+/* @media screen and (min-width: 1240px) {
+	.page-id-2 .mcb-item-7dfcf0888 .card-content_new_animation {
+		padding-top: 20px !important;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 1240px) {
+			.page-id-2 .mcb-item-7dfcf0888 {
+		width: 100% !important;
+	}
+	.page-id-2 .mcb-item-7dfcf0888 .card-content_new_animation {
+		padding-top: 30px !important;
+		padding-bottom: 30px !important;
+	}
+		.page-id-2 .mcb-item-2fe26cfae {
+		width: 60% !important;
+		margin: 0 auto !important;
+	}
+}
+@media screen and (max-width: 768px) {
+	.page-id-2 .mcb-item-7dfcf0888 .card-content_new_animation {
+		padding-top: 20px !important;
+		padding-bottom: 20px !important;
+	}
+}
+ */
+
+/* additional possible выравнивание блоков*/
+@media screen and (min-width: 768px) and (max-width: 1240px) {
+	.mcb-wrap-4ddf101cc {
+		width: 100% !important;
+	}
+	.mcb-wrap-d9f2c6bef {
+		width: 100% !important;
+	}
+		.mcb-wrap-c618843cb {
+		width: 100% !important;
+	}
+/* images */
+	.mcb-item-90b35532f {
+		width: 60% !important;
+		margin: 0 auto !important;
+	}
+		.mcb-item-5141f7d06 {
+		width: 60% !important;
+		margin: 0 auto !important;
+	}
+		.mcb-item-b9ce26864 {
+		width: 60% !important;
+		margin: 0 auto !important;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+/* Корректировки по мелочам */
+/* header xl-col */
+@media screen and (min-width: 1598px) {
+	.mcb-section-f20e755c1 {
+		max-width: 1500px !important;
+		margin: 0 auto !important;
+	}
+	.home h1.new_header_h1 {
+		font-size: 48px !important;
+		line-height: 4.2rem !important;
+	}
+	p.new_header_second_text {
+		font-size: 21px !important;
+		line-height: 1.7rem !important;
+	}
+}
+
+
+/* цвет шрифта в header: белый */
+.left_block, .left_block > h1.new_header_h1 {
+/* 	color: #fff !important; */
+}
+
+/* сдвиг первого блока на хедер */
+/* @media screen and (min-width: 960px) and (max-width: 1580px) {
+#about_arvidal_anchor {
+	margin-top: -180px !important;
+}
+	.none_heading_about {
+		display: none !important;
+	}
+	#about_arvidal_anchor {
+		z-index: -100 !important;
+	}
+} */
+
+
+
+
+/* первый блок раздела about arvidal, его появление при скроллинге */
+/* @media screen and (min-width: 1024px) {
+	.main_animation_0_0_1, .main_animation_0_1 {
+		position: relative;
+		top: 100px;
+	}
+	.pre_main_animation_0_0_1, .pre_main_animation_0_1 {
+		position: relative !important;
+		top: 0px !important;
+	}
+} */
+
+
+
+
+
+
+
+
+
+/* картинка MOA arvidal*/
+
+.wrapper_moa_block {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.wrapper_moa_block_2, .wrapper_moa_block_3 {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  /* flex-wrap: wrap; */
+}
+.moa_second_row, .moa_third_row {
+  display: flex;
+  gap: 5%;
+  justify-content: center;
+}
+.moa_third_row {
+}
+.text_line_through {
+  text-decoration: line-through #ff0000;
+}
+.info_block_moa {
+  width: 200px;
+  height: auto;
+  text-align: center;
+  font-size: 18px;
+  font-family: 'FuturaBookC', sans-serif;
+}
+/* 
+.image_lungs {
+  width: 400px;
+  height: 300px;
+  background-image: url("https://test.arvidal.info/wp-content/uploads/2023/11/lungs_1.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+.image_interferons {
+  width: 400px;
+  height: 300px;
+  background-image: url("https://test.arvidal.info/wp-content/uploads/2023/11/interferons.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+} */
+
+  .image_moa_1 {
+    position: relative;
+    -webkit-animation:spin 3s linear infinite;
+    -moz-animation:spin 3s linear infinite;
+    animation:spin 3s linear infinite;
+    filter: drop-shadow(5px 5px 5px #333);
+    /* transform-style: preserve-3d; */
+}
+@-moz-keyframes spin { 50% { -moz-transform: rotateY(35deg); } }
+@-webkit-keyframes spin { 50% { -webkit-transform: rotateY(35deg); } }
+@keyframes spin { 50% { -webkit-transform: rotateY(35deg); transform:rotateY(35deg); } }
+
+
+
+div.arrow_first_parent .arrow-1 {
+  transform: scale(-1) rotate(-50deg);
+  margin-right: 80px;
+}
+div.arrow_second_parent .arrow-1 {
+  margin-left: 80px;
+  margin-right: 20px;
+  animation: arrow-2 1s linear infinite;
+  transform: rotate(50deg);
+}
+
+.arrow-1 {
+	position: relative;
+	width: 80px;
+	height: 50px;
+	margin: 20px;
+  top: 80px;
+}
+.arrow-1 div {
+	position: relative;
+	top: 20px;
+	width: 90px;
+	height: 10px;
+	background-color: #337AB7;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+	left:0;
+	display: block;
+}
+.arrow-1 div::after {
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 10px;
+	top: -11px;
+	right: -8px;
+	background-color: #337AB7;
+	transform: rotate(45deg);
+}
+.arrow-1 div::before {
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 10px;
+	top: 11px;
+	right: -8px;
+	background-color: #337AB7;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+	transform: rotate(-45deg);
+}
+.arrow-1 {
+	animation: arrow-1 1s linear infinite;
+}
+@keyframes arrow-1 {
+    0% {
+        left:0;
+	}
+    50% {
+        left:10px;
+        top: 65px;
+	}
+    100% {
+        left:0;
+
+	}
+}
+
+@keyframes arrow-2 {
+    0% {
+        left:0;
+	}
+    50% {
+        left:-10px;
+        top: 65px;
+	}
+    100% {
+        left:0;
+	}
+}
+
+@keyframes arrow-11 {
+    0% {
+        left:0;
+	}
+    50% {
+        left:0px;
+        top: 65px;
+	}
+    100% {
+        left:0;
+	}
+}
+
+
+/* стрелочки на карточке в moa */
+
+.arrow-7 {
+    margin: 40px auto 10px auto;
+	width: 38px;
+	height: 40px;
+}
+.arrow-7 div {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-bottom: 5px solid #ff0000;
+    border-right: 5px solid #ff0000;
+    transform: rotate(45deg);
+    margin: -16px 0;
+    animation: arrow-7 2s infinite;
+}
+.arrow-7 div:nth-child(2){
+    animation-delay: -0.2s;
+}
+.arrow-7 div:nth-child(3){
+    animation-delay: -0.4s;
+}
+@keyframes arrow-7 {
+    0%{
+        opacity: 0;
+        transform: translate(0,-20px) rotate(45deg);
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: translate(0,20px) rotate(45deg);
+    }
+}
+
+
+/* корректировки по блоку MOA */
+/* главная картинка на мобильных экранах */
+.wrapper_img_moa img.image_moa_1 {
+	max-width: none;
+}
+/* главные стрелки вокруг опиоидов */
+@media screen and (max-width: 768px) {
+	div.arrow_first_parent .arrow-1 {
+		margin-right: 20px;
+		transform: rotate(89deg);
+    animation: arrow-11 1s linear infinite !important;
+	}
+	div.arrow_second_parent .arrow-1 {
+		margin-left: 20px;
+		transform: rotate(90deg);
+		animation: arrow-11 1s linear infinite !important;
+	}
+/* 	lungs */
+	.image_lungs {
+		height: auto !important;
+	}
+}
+/* выравнивание по высоте картинок в блоке moa */
+.mcb-column-inner-szcdc9s1d .card-content_new_animation {
+	height: 300px;
+}
+.mcb-column-inner-szcdc9s1d .card-content_new_animation img {
+	position: absolute;
+	bottom: 10px !important;
+}
+/* картинка с интерферонами выравнивание и легкими*/
+.mcb-item-eamletujo .card-content_new_animation {
+	height: 300px;
+}
+@media screen and (min-width: 1240px) {
+	.mcb-column-inner-szcdc9s1d .card-content_new_animation {
+	height: 400px !important;
+}
+	.mcb-item-eamletujo .card-content_new_animation {
+	height: 400px !important;
+}
+}
+@media screen and (min-width: 768px) and (max-width: 960px) {
+	.mcb-column-inner-szcdc9s1d .card-content_new_animation {
+	height: 250px !important;
+}
+	.mcb-item-eamletujo .card-content_new_animation {
+	height: 250px !important;
+}
+}
+@media screen and (min-width: 960px) and (max-width: 1240px) {
+	.mcb-column-inner-szcdc9s1d .card-content_new_animation {
+	height: 300px !important;
+}
+	.mcb-item-eamletujo .card-content_new_animation {
+	height: 300px !important;
+}
+}
+@media screen and (max-width: 768px) {
+  .mcb-column-inner-szcdc9s1d .card-content_new_animation {
+	height: auto !important;
+}
+	.mcb-column-inner-szcdc9s1d .card-content_new_animation img {
+		position: static !important;
+	}
+	.mcb-item-eamletujo .card-content_new_animation {
+	height: auto !important;
+}
+}
+
+/* border-radius на всех изображениях в блоках с анимацией */
+.card-content_new_animation img {
+	border-radius: 10px !important;
+}
+
+
+aside#block-10 {
+	margin-top: 0 !important;
+}
+aside#block-11 {
+	margin-top: 0 !important;
+}
+
+
+
+
+
+/* possible therapeutical areas */
+.mcb-column-inner.mcb-column-inner-swr3ngzal.mcb-item-fancy_heading-inner {
+	margin-bottom: 0 !important;
+}
+/* временно скрыть ulcer */
+.column.mcb-column.mcb-item-763303130.one.tablet-one.mobile-one.column_feature_box.animate.main_animation_2.fadeInLeft {
+	display: none !important;
+}
+
+
+
+
+
+/* about Arvidal выравнивание изображений по отношению к тексту */
+@media screen and (min-width: 1240px) {
+	.mcb-item-m75g2os6g img {
+	height: 350px;
+	object-fit: cover;
+}
+	.mcb-item-2naqehkxq img {
+	height: 413px;
+	object-fit: cover;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* aaa */
+
+
