@@ -73,7 +73,7 @@
             lungs.style.left = '20%';
             lungsDescription.style.opacity = '1';
             interferons.style.opacity = '1';
-            interferons.style.top = '40%';
+            interferons.style.top = '45%';
             interferons.style.left = '80%';
             interferonsDescription.style.opacity = '1';
           } else {
