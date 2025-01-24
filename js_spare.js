@@ -703,3 +703,113 @@ for(const card of document.getElementsByClassName("card")) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+jQuery(function ($) {
+  function trackScrollAnimation(selector, animationClass) {
+    var blockVisible = null;
+
+    function scrollTracking() {
+      var wt = $(window).scrollTop();
+      var wh = $(window).height();
+      var et = $(selector).offset().top;
+      var eh = $(selector).outerHeight();
+
+      if (wt + wh >= et && wt + wh - eh * 2 <= et + (wh - eh)) {
+        if (blockVisible == null || blockVisible === false) {
+          $(selector).addClass(animationClass);
+        }
+        blockVisible = true;
+      } else {
+        if (blockVisible == null || blockVisible === true) {
+          $(selector).removeClass(animationClass);
+        }
+        blockVisible = false;
+      }
+    }
+
+    $(window).scroll(scrollTracking);
+    $(document).ready(scrollTracking);
+  }
+
+  // Вызов функции для разных блоков
+  trackScrollAnimation('.main_animation_0_0_1', 'fadeInLeft');
+  trackScrollAnimation('.main_animation_0_0_2', 'fadeInLeft');
+  trackScrollAnimation('.main_animation_0_1', 'fadeInRight');
+  trackScrollAnimation('.main_animation_0_2', 'fadeInRight');
+  trackScrollAnimation('.main_animation_0_4', 'fadeInUp');
+  trackScrollAnimation('.main_animation_moa_0_1', 'fadeInLeft');
+  trackScrollAnimation('.main_animation_moa_0_2', 'fadeInUp');
+  trackScrollAnimation('.main_animation_moa_0_3', 'fadeInUp');
+  trackScrollAnimation('.main_animation_moa_0_4', 'fadeInRight');
+  trackScrollAnimation('.main_animation_moa_0_5', 'fadeInLeft');
+  trackScrollAnimation('.main_animation_moa_0_6', 'fadeInRight');
+  trackScrollAnimation('.main_animation_moa_0_7', 'fadeInLeft');
+  trackScrollAnimation('.main_animation_moa_0_8', 'fadeInRight');
+  trackScrollAnimation('.main_animation_0_13', 'fadeInLeft');
+  trackScrollAnimation('.main_animation_0_14', 'fadeInRight');
+  trackScrollAnimation('.main_animation_0_15', 'fadeInUp');
+  trackScrollAnimation('.main_animation_1', 'fadeInRight');
+  trackScrollAnimation('.main_animation_2', 'fadeInLeft');
+  trackScrollAnimation('.main_animation_3', 'fadeInRight');
+  trackScrollAnimation('.main_animation_4', 'fadeInLeft');
+  trackScrollAnimation('.main_animation_5', 'fadeInRight');
+});
