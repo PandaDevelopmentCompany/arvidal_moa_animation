@@ -5,9 +5,8 @@
     }
 
     .scroll-animation-section {
-    display: block;
-    position: relative;
-}
+      position: relative;
+    }
 
     /* Контейнер блока с анимацией */
     .scroll-animation-block {
