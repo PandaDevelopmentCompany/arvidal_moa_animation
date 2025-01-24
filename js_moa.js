@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const lungsDescription = document.querySelector('.scroll-lungs-description');
   const interferonsDescription = document.querySelector('.scroll-interferons-description');
 
+  // Проверяем, существуют ли элементы
   if (!animBlock || !molecule || !membrane || !lungs || !interferons || !lungsDescription || !interferonsDescription) {
     console.error('Некоторые элементы не найдены в DOM. Проверьте селекторы.');
     return;
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     threshold: 0.1
   };
 
+  // Создаем IntersectionObserver для отслеживания появления animBlock
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -34,11 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   observer.observe(animBlock);
 
+  // Запуск анимации
   function startAnimation() {
     window.addEventListener('scroll', moveElements);
     molecule.style.opacity = '1';
   }
 
+  // Сброс анимации
   function resetAnimation() {
     window.removeEventListener('scroll', moveElements);
     molecule.style.top = '60px';
@@ -54,18 +58,19 @@ document.addEventListener('DOMContentLoaded', () => {
     interferons.style.left = '50%';
   }
 
+  // Движение элементов на основе скролла
   function moveElements() {
     if (!isInView) return;
 
-    let scrollPosition = window.scrollY;
-    let blockTop = animBlock.getBoundingClientRect().top + window.scrollY; // Учитываем позицию относительно окна
+    let scrollPosition = window.scrollY + window.innerHeight / 2; // Центр экрана
+    let blockTop = animBlock.getBoundingClientRect().top + window.scrollY; // Положение блока
     let blockHeight = animBlock.offsetHeight;
 
     let scrollInsideBlock = scrollPosition - blockTop;
 
     if (scrollInsideBlock >= 0 && scrollInsideBlock <= blockHeight) {
       let percentage = scrollInsideBlock / blockHeight;
-      let newMoleculeTop = 60 + (percentage * (blockHeight - 60));
+      let newMoleculeTop = (percentage * blockHeight);
       molecule.style.top = `${newMoleculeTop}px`;
 
       if (percentage >= 0.2) { // Логический порог для membrane
