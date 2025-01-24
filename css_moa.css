@@ -121,7 +121,7 @@
     /* Карточка с описанием для легких */
     .scroll-lungs-description {
       position: absolute;
-      bottom: -220px;
+      bottom: -180px;
       left: 50%;
       transform: translateX(-50%);
       width: 80%;
@@ -138,7 +138,7 @@
     /* Карточка с описанием для интерферонов */
     .scroll-interferons-description {
       position: absolute;
-      bottom: -240px;
+      bottom: -210px;
       left: 50%;
       transform: translateX(-50%);
       width: 80%;
