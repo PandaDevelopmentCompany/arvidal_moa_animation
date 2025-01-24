@@ -1,11 +1,4 @@
    document.addEventListener('DOMContentLoaded', () => {
-    const animBlock = document.querySelector('.widget_block');
-    const animBlock = document.querySelector('.mcb-wrap-5lctxc57l');
-    const animBlock = document.querySelector('.mcb-wrap-inner-5lctxc57l');
-    const animBlock = document.querySelector('.mcb-wrap-background-overlay');
-    const animBlock = document.querySelector('.mcb-item-4e96cd8df');
-    const animBlock = document.querySelector('.mcb-column-inner-4e96cd8df');
-    const animBlock = document.querySelector('.widget_block');
       const animBlock = document.querySelector('.scroll-animation-block');
       const molecule = document.querySelector('.scroll-molecule');
       const membrane = document.querySelector('.scroll-membrane');
