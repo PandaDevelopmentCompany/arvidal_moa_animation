@@ -132,7 +132,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       opacity: 0;
       transition: opacity 1s ease-out;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     /* Карточка с описанием для интерферонов */
@@ -149,7 +149,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       opacity: 0;
       transition: opacity 1s ease-out;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     /* Анимация чередования картинок легких */
