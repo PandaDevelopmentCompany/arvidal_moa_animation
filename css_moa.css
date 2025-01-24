@@ -121,7 +121,7 @@
     /* Карточка с описанием для легких */
     .scroll-lungs-description {
       position: absolute;
-      bottom: -120px;
+      bottom: -170px;
       left: 50%;
       transform: translateX(-50%);
       width: 80%;
@@ -132,12 +132,13 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       opacity: 0;
       transition: opacity 1s ease-out;
+      font-size: 18px;
     }
 
     /* Карточка с описанием для интерферонов */
     .scroll-interferons-description {
       position: absolute;
-      bottom: -120px;
+      bottom: -170px;
       left: 50%;
       transform: translateX(-50%);
       width: 80%;
@@ -148,6 +149,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       opacity: 0;
       transition: opacity 1s ease-out;
+      font-size: 18px;
     }
 
     /* Анимация чередования картинок легких */
