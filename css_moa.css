@@ -138,7 +138,7 @@
     /* Карточка с описанием для интерферонов */
     .scroll-interferons-description {
       position: absolute;
-      bottom: -120px;
+      bottom: -240px;
       left: 50%;
       transform: translateX(-50%);
       width: 80%;
