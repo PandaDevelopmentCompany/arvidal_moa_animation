@@ -12,7 +12,7 @@
     .scroll-animation-block {
       position: relative;
       height: 1200px;
-      background-color: #fff;
+      background-color: transparent;
     }
 
     /* Мембрана */

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scroll Based Animation</title>
   <style>
-    /* Изолированные стили с уникальными префиксами */
+      /* Изолированные стили с уникальными префиксами */
     body {
       margin: 0;
       overflow-x: hidden;
@@ -19,7 +19,7 @@
     .scroll-animation-block {
       position: relative;
       height: 1200px;
-      background-color: #fff;
+      background-color: transparent;
     }
 
     /* Мембрана */
@@ -139,6 +139,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       opacity: 0;
       transition: opacity 1s ease-out;
+      font-size: 16px;
     }
 
     /* Карточка с описанием для интерферонов */
@@ -155,6 +156,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       opacity: 0;
       transition: opacity 1s ease-out;
+      font-size: 16px;
     }
 
     /* Анимация чередования картинок легких */
@@ -166,6 +168,33 @@
         opacity: 0;
       }
     }
+
+/* адаптация под устройства */
+@media screen and (max-width: 576px) {
+  .scroll-membrane {
+    max-width: 300px !important;
+    left: 51%;
+  }
+  .scroll-lungs {
+    max-width: 300px !important;
+    left: 51% !important;
+    top: 50% !important;
+  }
+  .scroll-lungs-description {
+    bottom: -90px !important;
+  }
+  .scroll-interferons {
+    max-width: 300px !important;
+    left: 51% !important;
+    top: 80% !important;
+  }
+  .scroll-interferons-description {
+    bottom: -160px !important;
+  }
+  .scroll-animation-block {
+    height: 1500px !important;
+  }
+}
 
   </style>
 </head>
@@ -202,93 +231,104 @@
 
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const animBlock = document.querySelector('.scroll-animation-block');
-      const molecule = document.querySelector('.scroll-molecule');
-      const membrane = document.querySelector('.scroll-membrane');
-      const lungs = document.querySelector('.scroll-lungs');
-      const interferons = document.querySelector('.scroll-interferons');
-      const lungsDescription = document.querySelector('.scroll-lungs-description');
-      const interferonsDescription = document.querySelector('.scroll-interferons-description');
-      
-      let isInView = false;
+   document.addEventListener('DOMContentLoaded', () => {
+  const animBlock = document.querySelector('.scroll-animation-block'); // Убедитесь, что этот селектор правильный
+  const molecule = document.querySelector('.scroll-molecule');
+  const membrane = document.querySelector('.scroll-membrane');
+  const lungs = document.querySelector('.scroll-lungs');
+  const interferons = document.querySelector('.scroll-interferons');
+  const lungsDescription = document.querySelector('.scroll-lungs-description');
+  const interferonsDescription = document.querySelector('.scroll-interferons-description');
 
-      const options = {
-        root: null, // viewport
-        rootMargin: "0px",
-        threshold: 0.1
-      };
+  // Проверяем, существуют ли элементы
+  if (!animBlock || !molecule || !membrane || !lungs || !interferons || !lungsDescription || !interferonsDescription) {
+    console.error('Некоторые элементы не найдены в DOM. Проверьте селекторы.');
+    return;
+  }
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            isInView = true;
-            startAnimation();
-          } else {
-            isInView = false;
-            resetAnimation();
-          }
-        });
-      }, options);
+  let isInView = false;
 
-      observer.observe(animBlock);
+  const options = {
+    root: null, // viewport
+    rootMargin: "0px",
+    threshold: 0.1
+  };
 
-      function startAnimation() {
-        window.addEventListener('scroll', moveElements);
-        molecule.style.opacity = '1';
+  // Создаем IntersectionObserver для отслеживания появления animBlock
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        isInView = true;
+        startAnimation();
+      } else {
+        isInView = false;
+        resetAnimation();
+      }
+    });
+  }, options);
+
+  observer.observe(animBlock);
+
+  // Запуск анимации
+  function startAnimation() {
+    window.addEventListener('scroll', moveElements);
+    molecule.style.opacity = '1';
+  }
+
+  // Сброс анимации
+  function resetAnimation() {
+    window.removeEventListener('scroll', moveElements);
+    molecule.style.top = '60px';
+    molecule.style.opacity = '0';
+    membrane.style.opacity = '0';
+    lungs.style.opacity = '0';
+    interferons.style.opacity = '0';
+    lungsDescription.style.opacity = '0';
+    interferonsDescription.style.opacity = '0';
+    lungs.style.top = '100%';
+    lungs.style.left = '50%';
+    interferons.style.top = '100%';
+    interferons.style.left = '50%';
+  }
+
+  // Движение элементов на основе скролла
+  function moveElements() {
+    if (!isInView) return;
+
+    let scrollPosition = window.scrollY + window.innerHeight / 2; // Центр экрана
+    let blockTop = animBlock.getBoundingClientRect().top + window.scrollY; // Положение блока
+    let blockHeight = animBlock.offsetHeight;
+
+    let scrollInsideBlock = scrollPosition - blockTop;
+
+    if (scrollInsideBlock >= 0 && scrollInsideBlock <= blockHeight) {
+      let percentage = scrollInsideBlock / blockHeight;
+      let newMoleculeTop = (percentage * blockHeight);
+      molecule.style.top = `${newMoleculeTop}px`;
+
+      if (percentage >= 0.2) { // Логический порог для membrane
+        membrane.style.opacity = '1';
       }
 
-      function resetAnimation() {
-        window.removeEventListener('scroll', moveElements);
-        molecule.style.top = '60px';
-        molecule.style.opacity = '0';
-        membrane.style.opacity = '0';
+      if (percentage >= 0.4) { // Логический порог для lungs и interferons
+        lungs.style.opacity = '1';
+        lungs.style.top = '40%';
+        lungs.style.left = '20%';
+        lungsDescription.style.opacity = '1';
+        interferons.style.opacity = '1';
+        interferons.style.top = '45%';
+        interferons.style.left = '80%';
+        interferonsDescription.style.opacity = '1';
+      } else {
         lungs.style.opacity = '0';
         interferons.style.opacity = '0';
         lungsDescription.style.opacity = '0';
         interferonsDescription.style.opacity = '0';
-        lungs.style.top = '100%';
-        lungs.style.left = '50%';
-        interferons.style.top = '100%';
-        interferons.style.left = '50%';
       }
+    }
+  }
+});
 
-      function moveElements() {
-        if (!isInView) return;
-
-        let scrollPosition = window.scrollY;
-        let blockTop = animBlock.offsetTop;
-        let blockHeight = animBlock.offsetHeight;
-
-        let scrollInsideBlock = scrollPosition - blockTop;
-
-        if (scrollInsideBlock >= 0 && scrollInsideBlock <= blockHeight) {
-          let percentage = scrollInsideBlock / blockHeight;
-          let newMoleculeTop = 60 + (percentage * (blockHeight - 60));
-          molecule.style.top = `${newMoleculeTop}px`;
-
-          if (newMoleculeTop >= 60) {
-            membrane.style.opacity = '1';
-          }
-
-          if (newMoleculeTop >= membrane.offsetTop - 100 && newMoleculeTop <= membrane.offsetTop + membrane.offsetHeight + 100) {
-            lungs.style.opacity = '1';
-            lungs.style.top = '40%';
-            lungs.style.left = '20%';
-            lungsDescription.style.opacity = '1';
-            interferons.style.opacity = '1';
-            interferons.style.top = '45%';
-            interferons.style.left = '80%';
-            interferonsDescription.style.opacity = '1';
-          } else {
-            lungs.style.opacity = '0';
-            interferons.style.opacity = '0';
-            lungsDescription.style.opacity = '0';
-            interferonsDescription.style.opacity = '0';
-          }
-        }
-      }
-    });
   </script>
 
 </body>
